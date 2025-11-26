@@ -13,7 +13,10 @@ public class GameResult : MonoBehaviour
     public void ShowVictory()
     {
         Debug.Log("VICTORY!");
-        GameResultPanel.SetActive(true);
+
+        CanvasGroup resultCanvas = GameResultPanel.GetComponent<CanvasGroup>();
+        resultCanvas.alpha = 1f;
+
         GameResultText.text = "VICTORY!";
 
         //Start delay of loading main menu
@@ -23,7 +26,10 @@ public class GameResult : MonoBehaviour
     public void ShowDefeat()
     {
         Debug.Log("DEFEAT!");
-        GameResultPanel.SetActive(true);
+
+        CanvasGroup resultCanvas = GameResultPanel.GetComponent<CanvasGroup>();
+        resultCanvas.alpha = 1f;
+
         GameResultText.text = "DEFEAT!";
 
         //Start delay of loading main menu
