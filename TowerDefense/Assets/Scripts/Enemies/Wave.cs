@@ -4,5 +4,7 @@ using UnityEngine;
 public class Wave
 {
     public GameObject[] enemies;
+    public int enemyCount;
     public float spawnInterval = 2f;
+    public int rewardMoney;
 }

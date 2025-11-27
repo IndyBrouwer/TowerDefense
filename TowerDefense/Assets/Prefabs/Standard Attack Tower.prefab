@@ -71,5 +71,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 715113a3f336ac9449210aa5b561e1fd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5865018942560596499}
   m_SourcePrefab: {fileID: 100100000, guid: 715113a3f336ac9449210aa5b561e1fd, type: 3}
+--- !u!1 &4534875736034052451 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 715113a3f336ac9449210aa5b561e1fd, type: 3}
+  m_PrefabInstance: {fileID: 3615955804568695858}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-5865018942560596499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4534875736034052451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c20d7b71198c4624eac91ff1b9525656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 8
+  attackDamage: 20
+  fireRate: 1
+  targetLockTime: 2

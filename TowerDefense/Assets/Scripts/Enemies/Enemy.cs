@@ -1,10 +1,34 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour, IEnemy, IDamageable
 {
     private NavMeshAgent agent;
-    private int health;
+    private float health;
+
+    [Header("Damage Flash Effect")]
+    private Renderer[] renderers;
+    private Color[] originalColors;
+    public Color damageColor = Color.red;
+    public float flashDuration = 0.1f;
+
+    private PlayerHealth playerHealthScript;
+    public int baseDamage = 7;
+
+    private EnemyManager enemyManagerScript;
+
+    private void Awake()
+    {
+        renderers = GetComponentsInChildren<Renderer>();
+
+        originalColors = new Color[renderers.Length];
+        for (int index = 0; index < renderers.Length; index++)
+        {
+            originalColors[index] = renderers[index].material.color;
+        }
+    }
 
     private void Update()
     {
@@ -15,8 +39,11 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
         }
     }
 
-    public void SetupEnemy(int health, float speed)
+    public void SetupEnemy(int health, float speed, EnemyManager enemyManager)
     {
+        enemyManager.EnemySpawned();
+        enemyManagerScript = enemyManager;
+
         this.health = health;
 
         agent = GetComponent<NavMeshAgent>();
@@ -24,14 +51,22 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
 
         //Search for the player base and set it as it's agent destination, (target)
         Transform baseTarget = GameObject.FindGameObjectWithTag("Base").transform;
+
+        //Get the PlayerHealth script from the base target
+        playerHealthScript = baseTarget.GetComponent<PlayerHealth>();
+
+        //Set the agent destination to the base target position
         agent.SetDestination(baseTarget.position);
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(float amount)
     {
-        //Flash red damage effect
-
         health -= amount;
+
+        if (renderers != null && renderers.Length > 0)
+        {
+            StartCoroutine(FlashRed());
+        }
 
         if (health <= 0)
         {
@@ -39,17 +74,42 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
         }
     }
 
+    private IEnumerator FlashRed()
+    {
+        //Change the color of all renderers to damageColor
+        for (int index = 0; index < renderers.Length; index++)
+        {
+            renderers[index].material.color = damageColor;
+        }
+
+        yield return new WaitForSeconds(flashDuration);
+
+        //Revert the color of all renderers to their original colors
+        for (int index = 0; index < renderers.Length; index++)
+        {
+            renderers[index].material.color = originalColors[index];
+        }
+    }
+
+
     public void OnEnemyReachedGoal()
     {
-        Debug.Log("Enemy reached the base!");
-
         //Deal damage to the base here
+
+        if (playerHealthScript != null)
+        {
+            playerHealthScript.TakeDamage(baseDamage);
+        }
 
         Die();
     }
 
     private void Die()
     {
+        //Notify the EnemyManager that this enemy has died
+        enemyManagerScript.EnemyDied();
+
+        //Destroy this enemy game object
         Destroy(gameObject);
     }
 }
