@@ -24,7 +24,7 @@ public class EnemyManager : MonoBehaviour
         if (enemiesAlive <= 0)
         {
             //Show wave state text UI
-            waveStateScript.ShowWaveState("Wave Defeated!");
+            waveStateScript.ShowWaveState("Wave Completed!");
 
             //All enemies are dead, notify the spawner to start the next wave
             enemySpawningScript.StartCoroutine(enemySpawningScript.WaveDefeated());

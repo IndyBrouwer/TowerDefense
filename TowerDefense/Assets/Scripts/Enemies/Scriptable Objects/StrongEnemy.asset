@@ -18,3 +18,4 @@ MonoBehaviour:
   maxHealth: 120
   speed: 1.5
   damage: 12
+  coins: 10

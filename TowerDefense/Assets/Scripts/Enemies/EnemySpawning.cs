@@ -12,6 +12,7 @@ public class EnemySpawning : MonoBehaviour
 
     [SerializeField] private GameResult gameResultScript;
     [SerializeField] private EnemyManager enemyManagerScript;
+    [SerializeField] private Wallet walletScript;
 
     private void Start()
     {
@@ -57,7 +58,7 @@ public class EnemySpawning : MonoBehaviour
                 Enemy enemyScript = newEnemy.GetComponent<Enemy>();
                 if (enemyScript != null)
                 {
-                    enemyScript.SetupEnemy(enemyType.enemyData, enemyManagerScript);
+                    enemyScript.SetupEnemy(enemyType.enemyData, enemyManagerScript, walletScript);
                 }
 
                 yield return new WaitForSeconds(wave.spawnInterval);

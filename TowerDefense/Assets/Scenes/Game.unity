@@ -203,6 +203,7 @@ MonoBehaviour:
     rewardMoney: 10
   gameResultScript: {fileID: 369656454}
   enemyManagerScript: {fileID: 661435425}
+  walletScript: {fileID: 369656455}
 --- !u!4 &666380
 Transform:
   m_ObjectHideFlags: 0
@@ -3827,6 +3828,7 @@ GameObject:
   m_Component:
   - component: {fileID: 369656453}
   - component: {fileID: 369656454}
+  - component: {fileID: 369656455}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -3864,6 +3866,19 @@ MonoBehaviour:
   GameResultPanel: {fileID: 415770177}
   GameResultText: {fileID: 1265882240}
   DelayMenuLoad: 7
+--- !u!114 &369656455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369656451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a6ac572331d99f4ea9afd66bfd26ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currencyText: {fileID: 1961434404}
 --- !u!1001 &372708230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9410,7 +9425,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.083333336
+  m_VoxelSize: 0.1
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: f27b47020af336d4eb4bf50d6b8817c3, type: 2}
   m_BuildHeightMesh: 0

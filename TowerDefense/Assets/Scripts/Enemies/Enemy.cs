@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
 
     private EnemyManager enemyManagerScript;
     private EnemyData enemyData;
+    private Wallet wallet;
 
     private void Awake()
     {
@@ -39,10 +40,11 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
         }
     }
 
-    public void SetupEnemy(EnemyData data, EnemyManager enemyManager)
+    public void SetupEnemy(EnemyData data, EnemyManager enemyManager, Wallet walletScript)
     {
         enemyData = data;
         enemyManagerScript = enemyManager;
+        wallet = walletScript;
 
         health = data.maxHealth;
         damage = data.damage;
@@ -109,6 +111,9 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
     {
         //Notify the EnemyManager that this enemy has died
         enemyManagerScript.EnemyDied();
+        
+        //
+        wallet.AddCurrency(enemyData.coins);
 
         //Destroy this enemy game object
         Destroy(gameObject);

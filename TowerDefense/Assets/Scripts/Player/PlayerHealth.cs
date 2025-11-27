@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
     [SerializeField] private Slider healthBar;
+    private Image fillImage;
 
     public int maxHealth = 100;
     private float currentHealth;
@@ -13,6 +14,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private void Start()
     {
         currentHealth = maxHealth;
+
+        Image fillImage = healthBar.fillRect.GetComponentInChildren<Image>();
     }
 
     public void TakeDamage(float amount)
@@ -25,6 +28,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         if (currentHealth <= 0)
         {
+            //Make fill from healthbar invisible on 0 health so it looks like 0 hp as well.
+            Color color = fillImage.color;
+            color.a = 0f;
+            fillImage.color = color;
+
             Die();
         }
     }

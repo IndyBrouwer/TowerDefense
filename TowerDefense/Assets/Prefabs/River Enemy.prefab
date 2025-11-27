@@ -109,7 +109,7 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 2
 --- !u!114 &-5196503036975931292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,4 +122,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b24924724c4b26243861c94bc15eec78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 7
+  damageColor: {r: 1, g: 0, b: 0, a: 1}
+  flashDuration: 0.1

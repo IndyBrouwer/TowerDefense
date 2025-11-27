@@ -42,6 +42,6 @@ public class GameResult : MonoBehaviour
         yield return new WaitForSeconds(DelayMenuLoad);
 
         //Go back to main menu
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Start");
     }
 }

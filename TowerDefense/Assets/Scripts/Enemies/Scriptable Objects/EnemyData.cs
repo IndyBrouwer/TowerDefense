@@ -12,4 +12,6 @@ public class EnemyData : ScriptableObject
     public float maxHealth;
     public float speed;
     public float damage;
+
+    public int coins;
 }
