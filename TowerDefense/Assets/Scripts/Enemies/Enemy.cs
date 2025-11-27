@@ -41,7 +41,6 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
 
     public void SetupEnemy(int health, float speed, EnemyManager enemyManager)
     {
-        enemyManager.EnemySpawned();
         enemyManagerScript = enemyManager;
 
         this.health = health;

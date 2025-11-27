@@ -56,6 +56,7 @@ public class TowerAttack : MonoBehaviour
     {
         Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
 
+        //Use Infinity so there's always something to compare against (for deciding closest enemy)
         float closestDistance = Mathf.Infinity;
         Enemy closestEnemy = null;
 

@@ -39,6 +39,8 @@ public class EnemySpawning : MonoBehaviour
 
     private IEnumerator SpawnWave(Wave wave)
     {
+        enemyManagerScript.SetEnemies(wave.enemyCount);
+
         foreach (GameObject enemyPrefab in wave.enemies)
         {
             //Spawn the enemy at the spawn point
