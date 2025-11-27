@@ -13,6 +13,7 @@ public class TowerAttack : MonoBehaviour
 
     private Enemy currentTarget;
 
+
     private void Update()
     {
         if (fireCooldown > 0f)

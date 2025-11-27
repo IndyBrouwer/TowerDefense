@@ -3,11 +3,6 @@ using UnityEngine;
 
 public class EnemySpawning : MonoBehaviour
 {
-    [Header("Enemy Prefabs")]
-    [SerializeField] private GameObject defaultEnemyPrefab;
-    [SerializeField] private GameObject strongEnemyPrefab;
-    [SerializeField] private GameObject tankyEnemyPrefab;
-
     [Header("Spawn Point")]
     [SerializeField] private Transform spawnPoint;
 
@@ -39,23 +34,34 @@ public class EnemySpawning : MonoBehaviour
 
     private IEnumerator SpawnWave(Wave wave)
     {
-        enemyManagerScript.SetEnemies(wave.enemyCount);
+        int totalEnemies = 0;
 
-        foreach (GameObject enemyPrefab in wave.enemies)
+        //Decide total amount of enemies in this wave
+        foreach (int count in wave.enemyCounts)
         {
-            //Spawn the enemy at the spawn point
-            GameObject newEnemy = Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+            totalEnemies += count;
+        }
 
-            //Interface setup for the enemy
-            IEnemy enemy = newEnemy.GetComponent<IEnemy>();
-            if (enemy != null)
+        //Inform the enemy manager about the total enemies in this wave
+        enemyManagerScript.SetEnemies(totalEnemies);
+
+        for (int enemyTypeIndex = 0; enemyTypeIndex < wave.enemyTypes.Length; enemyTypeIndex++)
+        {
+            EnemyData enemyType = wave.enemyTypes[enemyTypeIndex];
+            int count = wave.enemyCounts[enemyTypeIndex];
+
+            for (int spawnIndex = 0; spawnIndex < count; spawnIndex++)
             {
-                //Send health and speed values and assign the enemy manager script
-                enemy.SetupEnemy(100, 2f, enemyManagerScript);
-            }
+                GameObject newEnemy = Instantiate(enemyType.enemyPrefab, spawnPoint.position, Quaternion.identity);
 
-            //Wait for the specified spawn interval before spawning the next enemy
-            yield return new WaitForSeconds(wave.spawnInterval);
+                Enemy enemyScript = newEnemy.GetComponent<Enemy>();
+                if (enemyScript != null)
+                {
+                    enemyScript.SetupEnemy(enemyType.enemyData, enemyManagerScript);
+                }
+
+                yield return new WaitForSeconds(wave.spawnInterval);
+            }
         }
     }
 

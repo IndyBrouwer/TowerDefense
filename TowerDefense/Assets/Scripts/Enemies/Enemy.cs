@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -7,6 +6,7 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
 {
     private NavMeshAgent agent;
     private float health;
+    private float damage;
 
     [Header("Damage Flash Effect")]
     private Renderer[] renderers;
@@ -15,9 +15,9 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
     public float flashDuration = 0.1f;
 
     private PlayerHealth playerHealthScript;
-    public int baseDamage = 7;
 
     private EnemyManager enemyManagerScript;
+    private EnemyData enemyData;
 
     private void Awake()
     {
@@ -39,14 +39,16 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
         }
     }
 
-    public void SetupEnemy(int health, float speed, EnemyManager enemyManager)
+    public void SetupEnemy(EnemyData data, EnemyManager enemyManager)
     {
+        enemyData = data;
         enemyManagerScript = enemyManager;
 
-        this.health = health;
+        health = data.maxHealth;
+        damage = data.damage;
 
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = speed;
+        agent.speed = data.speed;
 
         //Search for the player base and set it as it's agent destination, (target)
         Transform baseTarget = GameObject.FindGameObjectWithTag("Base").transform;
@@ -97,7 +99,7 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
 
         if (playerHealthScript != null)
         {
-            playerHealthScript.TakeDamage(baseDamage);
+            playerHealthScript.TakeDamage(damage);
         }
 
         Die();
