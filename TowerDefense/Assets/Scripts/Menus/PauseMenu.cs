@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -28,5 +27,3 @@ public class PauseMenu : MonoBehaviour
         }
     }
 }
-
-//fast forward timeScale = 2;
