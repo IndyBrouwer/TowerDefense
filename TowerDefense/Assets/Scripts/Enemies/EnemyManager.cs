@@ -5,7 +5,10 @@ public class EnemyManager : MonoBehaviour
 {
     public int enemiesAlive = 0;
 
+    [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI enemiesAliveCounter;
+
+    [Header("Other Scripts")]
     [SerializeField] private EnemySpawning enemySpawningScript;
     [SerializeField] private WaveState waveStateScript;
 
@@ -25,9 +28,6 @@ public class EnemyManager : MonoBehaviour
         {
             //Show wave state text UI
             waveStateScript.ShowWaveState("Wave Completed!");
-
-            //All enemies are dead, notify the spawner to start the next wave
-            enemySpawningScript.StartCoroutine(enemySpawningScript.WaveDefeated());
         }
     }
 

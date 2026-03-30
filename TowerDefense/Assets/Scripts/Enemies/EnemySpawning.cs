@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class EnemySpawning : MonoBehaviour
@@ -10,17 +11,18 @@ public class EnemySpawning : MonoBehaviour
     [SerializeField] private Wave[] enemyWave;
     private int currentWaveIndex = 0;
 
+    [Header("UI")]
+    [SerializeField] private TextMeshProUGUI waveCounterText;
+
+    [Header("Other Scripts")]
     [SerializeField] private GameResult gameResultScript;
     [SerializeField] private EnemyManager enemyManagerScript;
     [SerializeField] private Wallet walletScript;
 
-    private void Start()
+    public void StartNextWave()
     {
-        StartNextWave();
-    }
+        waveCounterText.text = "Wave: " + (currentWaveIndex + 1) + "/" + enemyWave.Length;
 
-    private void StartNextWave()
-    {
         if (currentWaveIndex < enemyWave.Length)
         {
             StartCoroutine(SpawnWave(enemyWave[currentWaveIndex]));
@@ -64,15 +66,5 @@ public class EnemySpawning : MonoBehaviour
                 yield return new WaitForSeconds(wave.spawnInterval);
             }
         }
-    }
-
-    public IEnumerator WaveDefeated()
-    {
-        Debug.Log("Wave Defeated! Starting next wave in 10 seconds");
-
-        yield return new WaitForSeconds(10f);
-
-        //Rest period passed, start the next wave
-        StartNextWave();
     }
 }
