@@ -2,23 +2,31 @@ using UnityEngine;
 
 public class TowerAttack : MonoBehaviour
 {
-    [Header("Tower Settings")]
-    public float attackRange = 4f;
-    public float attackDamage = 20f;
-    public float fireRate = 1.5f;
-    public float targetLockTime = 2f;
+    [SerializeField] private TowerData currentTower;
 
-    private float fireCooldown = 0f;
+    private float attackRange;
+    private float attackDamage;
+    private float fireCooldown;
+
+    public float targetLockTime = 2f;
+    private float fireTimer = 0f;
     private float lockTimer = 0f;
 
     private Enemy currentTarget;
 
+    private void Start()
+    {
+        attackDamage = currentTower.Power;
+        attackRange = currentTower.Range;
+        fireCooldown = currentTower.FireCooldown;
+    }
+
 
     private void Update()
     {
-        if (fireCooldown > 0f)
+        if (fireTimer > 0f)
         {
-            fireCooldown -= Time.deltaTime;
+            fireTimer -= Time.deltaTime;
         }
 
         if (lockTimer > 0f)
@@ -46,10 +54,10 @@ public class TowerAttack : MonoBehaviour
         }
 
         // Attack the current target if possible
-        if (currentTarget != null && fireCooldown <= 0f)
+        if (currentTarget != null && fireTimer <= 0f)
         {
             Shoot(currentTarget);
-            fireCooldown = fireRate;
+            fireTimer = fireCooldown;
         }
     }
 

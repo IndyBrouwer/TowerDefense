@@ -93,7 +93,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c20d7b71198c4624eac91ff1b9525656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 4
-  attackDamage: 25
-  fireRate: 1.5
+  currentTower: {fileID: 11400000, guid: e74a952c59030a548b63b51d93574797, type: 2}
   targetLockTime: 2

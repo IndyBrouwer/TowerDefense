@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TowerName: Strong Tower
   TowerType: Offense
-  Power: 50
-  Range: 4
-  FireRate: 4
+  Power: 100
+  Range: 10
+  FireCooldown: 8
+  Cost: 15

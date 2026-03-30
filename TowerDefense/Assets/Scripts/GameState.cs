@@ -3,5 +3,7 @@ using UnityEngine;
 public enum CurrentGameState
 {
     WaveActive,
-    BuildingPhase
+    CardsActive,
+    BuildingPhase,
+    GamePaused
 }

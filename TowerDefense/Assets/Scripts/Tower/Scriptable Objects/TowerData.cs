@@ -10,5 +10,7 @@ public class TowerData : ScriptableObject
     [Header("Tower Stats")]
     public float Power;
     public float Range;
-    public float FireRate;
+    public float FireCooldown;
+
+    public int Cost;
 }

@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb82dde64d9aba54f8a9133e0213ce15, type: 3}
-  m_Name: BuffingTower
+  m_Name: BoostTower
   m_EditorClassIdentifier: 
-  TowerName: Buffing Tower
+  TowerName: Boost Attack Tower
   TowerType: Support
-  Power: 5
-  Range: 2
-  FireRate: 1.5
+  Power: 0
+  Range: 3
+  FireCooldown: 0
+  Cost: 5

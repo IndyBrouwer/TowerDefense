@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb82dde64d9aba54f8a9133e0213ce15, type: 3}
-  m_Name: DefaultTower
+  m_Name: SlowingTower
   m_EditorClassIdentifier: 
-  TowerName: Default Tower
-  TowerType: Offense
-  Power: 25
-  Range: 4
-  FireCooldown: 1.4
-  Cost: 10
+  TowerName: SlowingTower
+  TowerType: Support
+  Power: 0
+  Range: 3
+  FireCooldown: 0
+  Cost: 5
