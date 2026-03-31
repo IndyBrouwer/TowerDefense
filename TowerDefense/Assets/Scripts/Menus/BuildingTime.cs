@@ -10,11 +10,7 @@ public class BuildingTime : MonoBehaviour
     [Header("Scripts")]
     [SerializeField] private EnemySpawning enemySpawningScript;
     [SerializeField] private GameStateManager gameStateManagerScript;
-
-    private void Start()
-    {
-        buildingTime = 30f;
-    }
+    [SerializeField] private TowerPlacement towerPlacementScript;
 
     private void Update()
     {
@@ -30,6 +26,12 @@ public class BuildingTime : MonoBehaviour
                 buildingTime = 0f;
 
                 isDecreasing = false;
+
+                //Cancel tower placement if time runs out
+                if (towerPlacementScript.selectedTower != null)
+                {
+                    towerPlacementScript.OnPlayerRightClicked();
+                }
 
                 gameStateManagerScript.StartWavePhase();
             }
@@ -49,5 +51,10 @@ public class BuildingTime : MonoBehaviour
     public void StopCount()
     {
         isDecreasing = false;
+    }
+
+    public void ResetBuildingTime()
+    {
+        buildingTime = 30f;
     }
 }

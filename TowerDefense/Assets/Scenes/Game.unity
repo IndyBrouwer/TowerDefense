@@ -314,7 +314,6 @@ MonoBehaviour:
   towerDescription: {fileID: 616085}
   towershopControllerScript: {fileID: 1630916143}
   towerPlacementScript: {fileID: 574374592}
-  walletScript: {fileID: 369656455}
 --- !u!114 &616090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,7 +485,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 7c8069b9504b587479c35726810351b5, type: 2}
     - {fileID: 11400000, guid: 488aba1f4b5e2514db5f4d25e2832700, type: 2}
   waveCounterText: {fileID: 733701082}
-  gameResultScript: {fileID: 369656454}
   enemyManagerScript: {fileID: 661435425}
   walletScript: {fileID: 369656455}
   cardMakerScript: {fileID: 1579626065}
@@ -3658,7 +3656,6 @@ MonoBehaviour:
   towerDescription: {fileID: 215641054}
   towershopControllerScript: {fileID: 1630916143}
   towerPlacementScript: {fileID: 574374592}
-  walletScript: {fileID: 369656455}
 --- !u!114 &215641059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5421,6 +5418,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currencyText: {fileID: 1961434404}
+  earnSound: {fileID: 8300000, guid: 29ddf0946c9ac3747a7092a3c107086c, type: 3}
+  spendSound: {fileID: 8300000, guid: 77fa7fe1494e9de4a85474a286a290dd, type: 3}
 --- !u!114 &369656456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6684,6 +6683,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a47c5a492dc52e8478f4da5ee10fb458, type: 3}
   m_PrefabInstance: {fileID: 482176559}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &488537466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2726404651741689712, guid: 401550001fada6641b2e0f3748cb34dd, type: 3}
+  m_PrefabInstance: {fileID: 1354867842}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &500504010
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7276,6 +7280,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 440ce508f1118114b8e89ae245ccedd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectedTower: {fileID: 0}
+  towerShopControllerScript: {fileID: 1630916143}
+  walletScript: {fileID: 369656455}
 --- !u!1001 &593537901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8277,6 +8284,7 @@ MonoBehaviour:
   enemiesAliveCounter: {fileID: 422873509}
   enemySpawningScript: {fileID: 666379}
   waveStateScript: {fileID: 666381}
+  gameResultScript: {fileID: 369656454}
 --- !u!4 &661435426
 Transform:
   m_ObjectHideFlags: 0
@@ -16482,6 +16490,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1013502557}
     m_Modifications:
+    - target: {fileID: 5048014227286085140, guid: 401550001fada6641b2e0f3748cb34dd, type: 3}
+      propertyPath: towerTurret
+      value: 
+      objectReference: {fileID: 488537466}
     - target: {fileID: 5966710816964869884, guid: 401550001fada6641b2e0f3748cb34dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.996401
@@ -20134,6 +20146,7 @@ MonoBehaviour:
   buildingTime: 30
   enemySpawningScript: {fileID: 666379}
   gameStateManagerScript: {fileID: 1818770442}
+  towerPlacementScript: {fileID: 574374592}
 --- !u!114 &1630916145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20150,6 +20163,7 @@ MonoBehaviour:
   towerShopButton: {fileID: 1914707175}
   buildingTimeScript: {fileID: 1630916144}
   towerShopControllerScript: {fileID: 1630916143}
+  enemySpawningScript: {fileID: 666379}
 --- !u!1001 &1634720246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26281,7 +26295,6 @@ MonoBehaviour:
   towerDescription: {fileID: 2141637668}
   towershopControllerScript: {fileID: 1630916143}
   towerPlacementScript: {fileID: 574374592}
-  walletScript: {fileID: 369656455}
 --- !u!114 &2141637673
 MonoBehaviour:
   m_ObjectHideFlags: 0

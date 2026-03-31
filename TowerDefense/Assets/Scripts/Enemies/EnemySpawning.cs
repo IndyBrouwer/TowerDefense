@@ -15,7 +15,6 @@ public class EnemySpawning : MonoBehaviour
     [SerializeField] private TextMeshProUGUI waveCounterText;
 
     [Header("Other Scripts")]
-    [SerializeField] private GameResult gameResultScript;
     [SerializeField] private EnemyManager enemyManagerScript;
     [SerializeField] private Wallet walletScript;
     [SerializeField] private CardMaker cardMakerScript;
@@ -24,18 +23,19 @@ public class EnemySpawning : MonoBehaviour
     {
         waveCounterText.text = "Wave: " + (currentWaveIndex + 1) + "/" + enemyWave.Length;
 
-        if (currentWaveIndex < enemyWave.Length)
+        if (AreAllWavesCompleted() == false)
         {
             StartCoroutine(SpawnWave(enemyWave[currentWaveIndex]));
-            currentWaveIndex++;
 
             cardMakerScript.SetupCards(enemyWave[currentWaveIndex]);
+
+            currentWaveIndex++;
         }
-        else
-        {
-            //All waves completed, show victory and go to main menu
-            gameResultScript.ShowVictory();
-        }
+    }
+
+    public bool AreAllWavesCompleted()
+    {
+        return currentWaveIndex >= enemyWave.Length;
     }
 
     private IEnumerator SpawnWave(Wave wave)

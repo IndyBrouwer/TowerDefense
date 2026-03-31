@@ -73,6 +73,8 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
 
         if (health <= 0)
         {
+            wallet.AddCurrency(enemyData.coins);
+
             Die();
         }
     }
@@ -111,9 +113,6 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
     {
         //Notify the EnemyManager that this enemy has died
         enemyManagerScript.EnemyDied();
-        
-        //
-        wallet.AddCurrency(enemyData.coins);
 
         //Destroy this enemy game object
         Destroy(gameObject);

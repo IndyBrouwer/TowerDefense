@@ -3,6 +3,8 @@ using UnityEngine;
 public class TowerAttack : MonoBehaviour
 {
     [SerializeField] private TowerData currentTower;
+    [SerializeField] private GameObject towerTurret;
+    [SerializeField] private float turretRotationSpeed = 5f;
 
     private float attackRange;
     private float attackDamage;
@@ -54,10 +56,15 @@ public class TowerAttack : MonoBehaviour
         }
 
         // Attack the current target if possible
-        if (currentTarget != null && fireTimer <= 0f)
+        if (currentTarget != null)
         {
-            Shoot(currentTarget);
-            fireTimer = fireCooldown;
+            RotateTurretTowards(currentTarget);
+
+            if (fireTimer <= 0f)
+            {
+                Shoot(currentTarget);
+                fireTimer = fireCooldown;
+            }
         }
     }
 
@@ -81,6 +88,28 @@ public class TowerAttack : MonoBehaviour
         }
 
         return closestEnemy;
+    }
+
+    private void RotateTurretTowards(Enemy target)
+    {
+        Vector3 direction = target.transform.position - towerTurret.transform.position;
+
+        //Ignore vertical difference
+        direction.y = 0f;
+
+        if (direction == Vector3.zero)
+        {
+            return;
+        }
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+        //Smooth rotation (optional)
+        towerTurret.transform.rotation = Quaternion.Lerp(
+            towerTurret.transform.rotation,
+            targetRotation,
+            Time.deltaTime * turretRotationSpeed
+        );
     }
 
     private bool IsInRange(Enemy enemy)

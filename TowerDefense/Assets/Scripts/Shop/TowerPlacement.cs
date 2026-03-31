@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class TowerPlacement : MonoBehaviour
 {
-    private TowerData selectedTower;
+    [HideInInspector] public TowerData selectedTower;
     private GameObject previewInstance;
+
+    [SerializeField] private TowerShopController towerShopControllerScript;
+    [SerializeField] private Wallet walletScript;
 
     public void OnPlayerLeftClicked()
     {
@@ -24,6 +27,9 @@ public class TowerPlacement : MonoBehaviour
         }
 
         selectedTower = null;
+
+        //Enable shop icon again
+        towerShopControllerScript.towerShopButton.SetActive(true);
     }
 
     public void SetSelectedTower(TowerData tower)
@@ -37,7 +43,7 @@ public class TowerPlacement : MonoBehaviour
         }
 
         previewInstance = Instantiate(tower.TowerPrefab);
-        previewInstance.layer = LayerMask.NameToLayer("Ignore Raycast");
+        previewInstance.layer = LayerMask.GetMask("Ignore Raycast");
     }
 
     private void Update()
@@ -67,6 +73,13 @@ public class TowerPlacement : MonoBehaviour
 
     private void PlaceTower()
     {
+        //Check if the player has enough resources to buy the tower
+        if (walletScript.GetCurrencyAmount() < selectedTower.Cost)
+        {
+            Debug.LogWarning("Not enough currency to place this tower!");
+            return;
+        }
+
         //Check if its an empty tile
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (!Physics.Raycast(ray, out RaycastHit hit) || !hit.collider.CompareTag("PlacingTile"))
@@ -76,12 +89,18 @@ public class TowerPlacement : MonoBehaviour
         }
         else
         {
+            //Remove cost amount from player wallet.
+            walletScript.RemoveCurrency(selectedTower.Cost);
+
             Vector3 placePosition = hit.collider.transform.position;
 
             Instantiate(selectedTower.TowerPrefab, placePosition, Quaternion.identity);
 
             Destroy(previewInstance);
             selectedTower = null;
+
+            //Enable shop icon again
+            towerShopControllerScript.towerShopButton.SetActive(true);
         }
     }
 }

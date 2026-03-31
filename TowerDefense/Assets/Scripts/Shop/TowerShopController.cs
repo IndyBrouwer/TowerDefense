@@ -11,6 +11,12 @@ public class TowerShopController : MonoBehaviour
         towerShopButton.SetActive(!towerShopButton.activeSelf);
     }
 
+    public void EnableShop()
+    {
+        towerShopMenu.SetActive(true);
+        towerShopButton.SetActive(false);
+    }
+
     public void DisableShop()
     {
         towerShopMenu.SetActive(false);

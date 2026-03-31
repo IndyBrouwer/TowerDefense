@@ -9,10 +9,19 @@ public class BuildPhase : MonoBehaviour, IGameState
     [Header("Scripts")]
     [SerializeField] private BuildingTime buildingTimeScript;
     [SerializeField] private TowerShopController towerShopControllerScript;
+    [SerializeField] private EnemySpawning enemySpawningScript;
 
 
     public void Enter()
     {
+        //Last wave check
+        if (enemySpawningScript.AreAllWavesCompleted() == true)
+        {
+            return;
+        }
+
+        buildingTimeScript.ResetBuildingTime();
+
         //Enable building timer
         buildTimer.SetActive(true);
 
@@ -23,7 +32,7 @@ public class BuildPhase : MonoBehaviour, IGameState
         buildingTimeScript.DecreaseCount();
 
         //Show tower shop menu
-        towerShopControllerScript.ToggleTowerShopMenu();
+        towerShopControllerScript.EnableShop();
     }
 
     public void Exit()

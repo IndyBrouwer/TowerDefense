@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class ShopCard : MonoBehaviour, ICard, IInteractable
 {
+    [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI towerName;
     [SerializeField] private TextMeshProUGUI towerCost;
     [SerializeField] private Image towerImage;
@@ -11,9 +12,9 @@ public class ShopCard : MonoBehaviour, ICard, IInteractable
 
     private TowerData currentTower;
 
+    [Header("Other Scripts")]
     [SerializeField] private TowerShopController towershopControllerScript;
     [SerializeField] private TowerPlacement towerPlacementScript;
-    [SerializeField] private Wallet walletScript;
 
     public void SetCardData(TowerData data)
     {
@@ -27,9 +28,6 @@ public class ShopCard : MonoBehaviour, ICard, IInteractable
 
     public void OnPlayerInteract()
     {
-        //Check if the player has enough resources to buy the tower
-        walletScript.RemoveCurrency(currentTower.Cost);
-
         //Hide the shop menu
         towershopControllerScript.DisableShop();
 
