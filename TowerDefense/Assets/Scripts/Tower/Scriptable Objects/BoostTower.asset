@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TowerName: Boost Attack Tower
   TowerType: Support
+  TowerSprite: {fileID: 0}
+  TowerDescription: A supportive tower, this tower boosts the attack power of nearby
+    offensive towers.
   Power: 0
   Range: 3
   FireCooldown: 0

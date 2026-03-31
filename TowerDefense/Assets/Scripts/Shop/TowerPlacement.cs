@@ -1,0 +1,87 @@
+using UnityEngine;
+
+public class TowerPlacement : MonoBehaviour
+{
+    private TowerData selectedTower;
+    private GameObject previewInstance;
+
+    public void OnPlayerLeftClicked()
+    {
+        //Check if shop is active and if a tower is selected
+        if (selectedTower == null)
+        {
+            return;
+        }
+
+        PlaceTower();
+    }
+
+    public void OnPlayerRightClicked()
+    {
+        if (previewInstance != null)
+        {
+            Destroy(previewInstance);
+        }
+
+        selectedTower = null;
+    }
+
+    public void SetSelectedTower(TowerData tower)
+    {
+        selectedTower = tower;
+
+        // Create preview object
+        if (previewInstance != null)
+        {
+            Destroy(previewInstance);
+        }
+
+        previewInstance = Instantiate(tower.TowerPrefab);
+        previewInstance.layer = LayerMask.NameToLayer("Ignore Raycast");
+    }
+
+    private void Update()
+    {
+        if (selectedTower == null)
+        {
+            return;
+        }
+
+        MovePreviewToMouse();
+    }
+
+    private void MovePreviewToMouse()
+    {
+        if (previewInstance == null) return;
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            if (hit.collider.CompareTag("PlacingTile"))
+            {
+                previewInstance.transform.position = hit.collider.transform.position;
+            }
+        }
+    }
+
+    private void PlaceTower()
+    {
+        //Check if its an empty tile
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (!Physics.Raycast(ray, out RaycastHit hit) || !hit.collider.CompareTag("PlacingTile"))
+        {
+            Debug.LogWarning("You can only place towers on empty tiles!");
+            return;
+        }
+        else
+        {
+            Vector3 placePosition = hit.collider.transform.position;
+
+            Instantiate(selectedTower.TowerPrefab, placePosition, Quaternion.identity);
+
+            Destroy(previewInstance);
+            selectedTower = null;
+        }
+    }
+}

@@ -17,6 +17,12 @@ public class Wallet : MonoBehaviour
 
     public void RemoveCurrency(int costs)
     {
+        if (currencyAmount < costs)
+        {
+            Debug.LogWarning("Not enough currency to complete the transaction!");
+            return;
+        }
+
         //Remove costs from total money
         currencyAmount -= costs;
 

@@ -28,10 +28,13 @@ public class BuildPhase : MonoBehaviour, IGameState
 
     public void Exit()
     {
+        //Stop decreasing building time
+        buildingTimeScript.StopCount();
+
         //Disable building timer
         buildTimer.SetActive(false);
 
-        //Disable Tower Shop Button
-        towerShopButton.SetActive(false);
+        //Hide tower shop menu
+        towerShopControllerScript.DisableShop();
     }
 }

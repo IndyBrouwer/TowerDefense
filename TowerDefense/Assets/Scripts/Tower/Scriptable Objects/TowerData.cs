@@ -6,6 +6,9 @@ public class TowerData : ScriptableObject
     [Header("Tower Identification")]
     public string TowerName;
     public string TowerType;
+    public Sprite TowerSprite;
+    public string TowerDescription;
+    public GameObject TowerPrefab;
 
     [Header("Tower Stats")]
     public float Power;

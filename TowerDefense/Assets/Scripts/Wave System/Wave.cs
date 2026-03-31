@@ -7,4 +7,6 @@ public class Wave
     public int[] enemyCounts;
     public float spawnInterval = 2f;
     public int rewardMoney;
+
+    public TowerData[] shopCards;
 }

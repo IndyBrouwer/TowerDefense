@@ -18,6 +18,7 @@ public class EnemySpawning : MonoBehaviour
     [SerializeField] private GameResult gameResultScript;
     [SerializeField] private EnemyManager enemyManagerScript;
     [SerializeField] private Wallet walletScript;
+    [SerializeField] private CardMaker cardMakerScript;
 
     public void StartNextWave()
     {
@@ -27,6 +28,8 @@ public class EnemySpawning : MonoBehaviour
         {
             StartCoroutine(SpawnWave(enemyWave[currentWaveIndex]));
             currentWaveIndex++;
+
+            cardMakerScript.SetupCards(enemyWave[currentWaveIndex]);
         }
         else
         {

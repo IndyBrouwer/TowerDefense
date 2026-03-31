@@ -45,4 +45,9 @@ public class BuildingTime : MonoBehaviour
             Time.timeScale = 1f;
         }
     }
+
+    public void StopCount()
+    {
+        isDecreasing = false;
+    }
 }
