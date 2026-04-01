@@ -22,3 +22,4 @@ MonoBehaviour:
   Range: 3
   FireCooldown: 0.5
   Cost: 10
+  TowerColor: {r: 1, g: 1, b: 1, a: 0}

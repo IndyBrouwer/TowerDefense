@@ -16,4 +16,5 @@ public class TowerData : ScriptableObject
     public float FireCooldown;
 
     public int Cost;
+    public Color TowerColor;
 }

@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb82dde64d9aba54f8a9133e0213ce15, type: 3}
   m_Name: BoostTower
   m_EditorClassIdentifier: 
-  TowerName: Boost Attack Tower
+  TowerName: Boost Tower
   TowerType: Support
   TowerSprite: {fileID: 0}
-  TowerDescription: A supportive tower, this tower boosts the attack power of nearby
-    offensive towers.
+  TowerDescription: A supportive tower, this tower causes offensive towers in range
+    to deal more damage.
+  TowerPrefab: {fileID: 1800266562124969194, guid: d2fa4295c277a7246855b87a1f2cc015, type: 3}
   Power: 0
   Range: 3
   FireCooldown: 0
   Cost: 5
+  TowerColor: {r: 0.48742133, g: 1, b: 0.89748424, a: 0}

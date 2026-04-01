@@ -16,7 +16,9 @@ MonoBehaviour:
   TowerType: Support
   TowerSprite: {fileID: 0}
   TowerDescription: A supportive tower, this tower slows nearby enemies.
+  TowerPrefab: {fileID: 1362283593277459091, guid: ba8227d4f68dacf4f841f437fb60ba97, type: 3}
   Power: 0
   Range: 3
   FireCooldown: 0
   Cost: 5
+  TowerColor: {r: 0.6190654, g: 0.72955966, b: 0.5024325, a: 0}

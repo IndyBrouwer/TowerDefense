@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb82dde64d9aba54f8a9133e0213ce15, type: 3}
-  m_Name: DebuffTower
+  m_Name: PoisonTower
   m_EditorClassIdentifier: 
-  TowerName: HP Decrease Tower
+  TowerName: Poison Tower
   TowerType: Support
   TowerSprite: {fileID: 0}
-  TowerDescription: A supportive tower, this tower decreases enemy hp when they are
+  TowerDescription: A supportive tower, this tower deals damage over time to enemies
     in range.
+  TowerPrefab: {fileID: 15085879552625207, guid: fb6d7358973df7545a0d27c55b027868, type: 3}
   Power: 0
-  Range: 2
+  Range: 3
   FireCooldown: 0
   Cost: 5
+  TowerColor: {r: 1, g: 0.8124187, b: 0.58176094, a: 0}

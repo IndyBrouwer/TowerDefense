@@ -43,7 +43,6 @@ public class TowerPlacement : MonoBehaviour
         }
 
         previewInstance = Instantiate(tower.TowerPrefab);
-        previewInstance.layer = LayerMask.GetMask("Ignore Raycast");
     }
 
     private void Update()
@@ -91,6 +90,9 @@ public class TowerPlacement : MonoBehaviour
         {
             //Remove cost amount from player wallet.
             walletScript.RemoveCurrency(selectedTower.Cost);
+
+            //Remove tag from tile to prevent placing multiple towers on the same tile
+            hit.collider.tag = "Untagged";
 
             Vector3 placePosition = hit.collider.transform.position;
 

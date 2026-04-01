@@ -1,11 +1,12 @@
 using UnityEngine;
 
-public class TowerAttack : MonoBehaviour
+public class TowerAttack : MonoBehaviour, ITower
 {
     [SerializeField] private TowerData currentTower;
     [SerializeField] private GameObject towerTurret;
     [SerializeField] private float turretRotationSpeed = 5f;
 
+    [Header("Tower Stats")]
     private float attackRange;
     private float attackDamage;
     private float fireCooldown;
@@ -13,6 +14,10 @@ public class TowerAttack : MonoBehaviour
     public float targetLockTime = 2f;
     private float fireTimer = 0f;
     private float lockTimer = 0f;
+
+    [Header("Tower Effect Bools")]
+    private bool canPoison;
+    private bool isBoosted;
 
     private Enemy currentTarget;
 
@@ -117,8 +122,36 @@ public class TowerAttack : MonoBehaviour
         return Vector3.Distance(transform.position, enemy.transform.position) <= attackRange;
     }
 
+    public void SetDamageBoost(bool value)
+    {
+        isBoosted = value;
+    }
+
+    public void SetPoisonEnabled(bool value)
+    {
+        canPoison = value;
+    }
+
     private void Shoot(Enemy enemy)
     {
-        enemy.TakeDamage(attackDamage);
+        float finalDamage = attackDamage;
+
+        if (isBoosted)
+        {
+            finalDamage *= 1.5f;
+        }
+
+        enemy.TakeDamage(finalDamage);
+
+        if (canPoison)
+        {
+            enemy.ApplyPoison();
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

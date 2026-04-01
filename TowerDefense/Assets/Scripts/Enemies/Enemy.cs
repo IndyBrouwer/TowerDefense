@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
     private NavMeshAgent agent;
     private float health;
     private float damage;
+    private float speed;
 
     [Header("Damage Flash Effect")]
     private Renderer[] renderers;
@@ -14,8 +15,15 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
     public Color damageColor = Color.red;
     public float flashDuration = 0.1f;
 
-    private PlayerHealth playerHealthScript;
+    [Header("Poison")]
+    [SerializeField] private float poisonDuration = 5f;
+    [SerializeField] private float poisonTickInterval = 1f;
+    [SerializeField] private float poisonDamage = 3f;
+    private bool isPoisoned = false;
+    private float poisonTimer = 0f;
 
+    [Header("Other Scripts")]
+    private PlayerHealth playerHealthScript;
     private EnemyManager enemyManagerScript;
     private EnemyData enemyData;
     private Wallet wallet;
@@ -48,9 +56,10 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
 
         health = data.maxHealth;
         damage = data.damage;
+        speed = data.speed;
 
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = data.speed;
+        agent.speed = speed;
 
         //Search for the player base and set it as it's agent destination, (target)
         Transform baseTarget = GameObject.FindGameObjectWithTag("Base").transform;
@@ -60,6 +69,37 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
 
         //Set the agent destination to the base target position
         agent.SetDestination(baseTarget.position);
+    }
+
+    public void SetSpeedMultiplier(float multiplier)
+    {
+        agent.speed = speed * multiplier;
+    }
+
+    public void ApplyPoison()
+    {
+        poisonTimer = poisonDuration;
+
+        if (!isPoisoned)
+        {
+            StartCoroutine(PoisonEffect());
+        }
+    }
+
+    private IEnumerator PoisonEffect()
+    {
+        isPoisoned = true;
+
+        while (poisonTimer > 0f)
+        {
+            TakeDamage(poisonDamage);
+
+            yield return new WaitForSeconds(poisonTickInterval);
+
+            poisonTimer -= poisonTickInterval;
+        }
+
+        isPoisoned = false;
     }
 
     public void TakeDamage(float amount)
