@@ -11,6 +11,11 @@ public class TowerSupport : MonoBehaviour, ITower
     [SerializeField] private TowerData thisTower;
     [SerializeField] private SupportType supportType;
 
+    /// <summary>
+    /// HashSets are kind of like a Dictionary that has only Keys and no Values.
+    /// Their main use case is if you're going to need to search your collection to see whether a given item is in it or not,
+    /// but don't need any additional data beyond “yes it's here” or “no it's not”.
+    /// </summary>
     private HashSet<Enemy> affectedEnemies = new HashSet<Enemy>();
 
     private void Start()

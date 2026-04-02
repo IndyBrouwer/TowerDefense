@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Fast Enemy
   enemyPrefab: {fileID: 8146124081093579092, guid: 2c397452ee66ea44c80b832363fe837f, type: 3}
   enemyData: {fileID: 11400000}
-  maxHealth: 75
+  maxHealth: 500
   speed: 3
   damage: 5
-  coins: 10
+  coins: 40

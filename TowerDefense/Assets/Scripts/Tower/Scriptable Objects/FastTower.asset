@@ -18,8 +18,8 @@ MonoBehaviour:
   TowerDescription: An offensive tower, this tower shoots a lot faster but deals
     less damage. Also has a little less range.
   TowerPrefab: {fileID: 592530463394945460, guid: a284fd5781844884fb7dc42daaa0ee8b, type: 3}
-  Power: 10
+  Power: 100
   Range: 3
   FireCooldown: 0.5
-  Cost: 10
+  Cost: 150
   TowerColor: {r: 1, g: 1, b: 1, a: 0}

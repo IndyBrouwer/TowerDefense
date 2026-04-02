@@ -9,6 +9,12 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
     private float damage;
     private float speed;
 
+    [Header("Invincibility")]
+    [SerializeField] private float invincibilityDuration = 0.5f;
+    private bool isInvincible = false;
+
+    private bool isDead = false;
+
     [Header("Damage Flash Effect")]
     private Renderer[] renderers;
     private Color[] originalColors;
@@ -18,7 +24,7 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
     [Header("Poison")]
     [SerializeField] private float poisonDuration = 5f;
     [SerializeField] private float poisonTickInterval = 1f;
-    [SerializeField] private float poisonDamage = 3f;
+    [SerializeField] private float poisonDamage = 30f;
     private bool isPoisoned = false;
     private float poisonTimer = 0f;
 
@@ -69,6 +75,9 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
 
         //Set the agent destination to the base target position
         agent.SetDestination(baseTarget.position);
+
+        //Start the invincibility coroutine to make the enemy invincible for a short duration after spawning
+        StartCoroutine(InvincibilityCoroutine());
     }
 
     public void SetSpeedMultiplier(float multiplier)
@@ -84,6 +93,15 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
         {
             StartCoroutine(PoisonEffect());
         }
+    }
+
+    private IEnumerator InvincibilityCoroutine()
+    {
+        isInvincible = true;
+
+        yield return new WaitForSeconds(invincibilityDuration);
+
+        isInvincible = false;
     }
 
     private IEnumerator PoisonEffect()
@@ -104,6 +122,12 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
 
     public void TakeDamage(float amount)
     {
+        //Invincibility check (is there for 0.5 seconds after spawning)
+        if (isInvincible)
+        {
+            return;
+        }
+
         health -= amount;
 
         if (renderers != null && renderers.Length > 0)
@@ -151,6 +175,13 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
 
     private void Die()
     {
+        if (isDead)
+        {
+            return;
+        }
+
+        isDead = true;
+
         //Notify the EnemyManager that this enemy has died
         enemyManagerScript.EnemyDied();
 

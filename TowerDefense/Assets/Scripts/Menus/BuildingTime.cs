@@ -5,6 +5,7 @@ public class BuildingTime : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI buildingTimeText;
     [SerializeField] private float buildingTime = 30f;
+    private float buildTimeLeft;
     private bool isDecreasing = false;
 
     [Header("Scripts")]
@@ -51,6 +52,8 @@ public class BuildingTime : MonoBehaviour
     public void StopCount()
     {
         isDecreasing = false;
+
+        buildTimeLeft = buildingTime;
     }
 
     public void ResetBuildingTime()

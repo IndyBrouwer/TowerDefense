@@ -5,6 +5,7 @@ public class BuildPhase : MonoBehaviour, IGameState
     [Header("UI")]
     [SerializeField] private GameObject buildTimer;
     [SerializeField] private GameObject towerShopButton;
+    [SerializeField] private GameObject endBuildPhaseButton;
 
     [Header("Scripts")]
     [SerializeField] private BuildingTime buildingTimeScript;
@@ -28,6 +29,8 @@ public class BuildPhase : MonoBehaviour, IGameState
         //Enable Tower Shop Button
         towerShopButton.SetActive(true);
 
+        endBuildPhaseButton.SetActive(true);
+
         //Start decreasing building time
         buildingTimeScript.DecreaseCount();
 
@@ -42,6 +45,8 @@ public class BuildPhase : MonoBehaviour, IGameState
 
         //Disable building timer
         buildTimer.SetActive(false);
+
+        endBuildPhaseButton.SetActive(false);
 
         //Hide tower shop menu
         towerShopControllerScript.DisableShop();

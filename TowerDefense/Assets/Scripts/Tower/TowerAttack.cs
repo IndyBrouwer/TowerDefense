@@ -16,7 +16,7 @@ public class TowerAttack : MonoBehaviour, ITower
     private float lockTimer = 0f;
 
     [Header("Tower Effect Bools")]
-    private bool canPoison;
+    public bool canPoison;
     private bool isBoosted;
 
     private Enemy currentTarget;
