@@ -11,6 +11,7 @@ public class BuildPhase : MonoBehaviour, IGameState
     [SerializeField] private BuildingTime buildingTimeScript;
     [SerializeField] private TowerShopController towerShopControllerScript;
     [SerializeField] private EnemySpawning enemySpawningScript;
+    [SerializeField] private UpgradeShopController upgradeShopControllerScript;
 
 
     public void Enter()
@@ -50,5 +51,7 @@ public class BuildPhase : MonoBehaviour, IGameState
 
         //Hide tower shop menu
         towerShopControllerScript.DisableShop();
+
+        upgradeShopControllerScript.DisableShop();
     }
 }

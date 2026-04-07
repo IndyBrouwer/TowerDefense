@@ -7,9 +7,12 @@ public class WavePhase : MonoBehaviour, IGameState
 
     [Header("Scripts")]
     [SerializeField] private EnemySpawning enemySpawningScript;
+    [SerializeField] private UpgradeShopController upgradeShopControllerScript;
 
     public void Enter()
     {
+        upgradeShopControllerScript.DisableShop();
+
         //Enable speed up button
         speedUpButton.SetActive(true);
 

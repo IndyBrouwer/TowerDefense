@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 248480821985444622}
   - component: {fileID: -1295950670933003507}
+  - component: {fileID: -4159470787191319704}
   m_Layer: 0
   m_Name: Arrow Tower
   m_TagString: AttackTower
@@ -50,6 +51,28 @@ MonoBehaviour:
   towerTurret: {fileID: 2195590270200862723}
   turretRotationSpeed: 4
   targetLockTime: 2
+  canPoison: 0
+--- !u!65 &-4159470787191319704
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 592530463394945460}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!1 &2195590270200862723
 GameObject:
   m_ObjectHideFlags: 0

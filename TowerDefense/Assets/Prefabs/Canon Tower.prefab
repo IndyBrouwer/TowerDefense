@@ -301,6 +301,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5966710816964869884}
   - component: {fileID: 5048014227286085140}
+  - component: {fileID: 7544552793336370141}
   m_Layer: 0
   m_Name: Canon Tower
   m_TagString: AttackTower
@@ -341,3 +342,25 @@ MonoBehaviour:
   towerTurret: {fileID: 2726404651741689712}
   turretRotationSpeed: 4
   targetLockTime: 2
+  canPoison: 0
+--- !u!65 &7544552793336370141
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6450794367201027142}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 0.6, z: 0}
