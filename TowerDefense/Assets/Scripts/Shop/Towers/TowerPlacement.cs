@@ -1,9 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class TowerPlacement : MonoBehaviour
 {
     [HideInInspector] public TowerData selectedTower;
     private GameObject previewInstance;
+    private GameObject placedTower;
 
     [SerializeField] private TowerShopController towerShopControllerScript;
     [SerializeField] private Wallet walletScript;
@@ -43,6 +45,9 @@ public class TowerPlacement : MonoBehaviour
         }
 
         previewInstance = Instantiate(tower.TowerPrefab);
+
+        //Disable collider for preview to avoid triggering placement issues
+        previewInstance.GetComponent<Collider>().enabled = false;
     }
 
     private void Update()
@@ -96,7 +101,7 @@ public class TowerPlacement : MonoBehaviour
 
             Vector3 placePosition = hit.collider.transform.position;
 
-            Instantiate(selectedTower.TowerPrefab, placePosition, Quaternion.identity);
+            placedTower = Instantiate(selectedTower.TowerPrefab, placePosition, Quaternion.identity);
 
             Destroy(previewInstance);
             selectedTower = null;

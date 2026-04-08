@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "TowerData", menuName = "Scriptable Objects/TowerData")]
@@ -14,6 +15,8 @@ public class TowerData : ScriptableObject
     public float Power;
     public float Range;
     public float FireCooldown;
+
+    public List<UpgradeData> availableUpgrades;
 
     public int Cost;
     public Color TowerColor;

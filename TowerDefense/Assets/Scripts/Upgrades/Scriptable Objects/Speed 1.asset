@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b78f79cbad2686e44a959410b2015860, type: 3}
+  m_Name: Speed 1
+  m_EditorClassIdentifier: 
+  upgradeName: Speed 1
+  cost: 40
+  nextUpgrade: {fileID: 11400000, guid: 50f51f43dc4aeca469a4911c29349503, type: 2}

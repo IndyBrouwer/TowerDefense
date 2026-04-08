@@ -8,6 +8,7 @@ public class WavePhase : MonoBehaviour, IGameState
     [Header("Scripts")]
     [SerializeField] private EnemySpawning enemySpawningScript;
     [SerializeField] private UpgradeShopController upgradeShopControllerScript;
+    [SerializeField] private GameSpeed gameSpeedScript;
 
     public void Enter()
     {
@@ -18,6 +19,9 @@ public class WavePhase : MonoBehaviour, IGameState
 
         //Start next wave
         enemySpawningScript.StartNextWave();
+
+        //Load in speed the player selected before
+        Time.timeScale = gameSpeedScript.savedSpeedValue;
     }
 
     public void Exit()

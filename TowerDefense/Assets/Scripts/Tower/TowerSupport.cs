@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerSupport : MonoBehaviour, ITower
+public class TowerSupport : MonoBehaviour
 {
     [Header("Tower Stats")]
     private float supportRange;

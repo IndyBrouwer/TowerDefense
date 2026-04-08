@@ -16,6 +16,10 @@ public class SceneFunctions : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("Start");
+        if (Time.timeScale != 1)
+        {
+            Time.timeScale = 1;
+        }
     }
 
     public void QuitGame()

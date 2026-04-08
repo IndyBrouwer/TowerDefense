@@ -163,8 +163,7 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
 
     public void OnEnemyReachedGoal()
     {
-        //Deal damage to the base here
-
+        //Deal damage to the player base
         if (playerHealthScript != null)
         {
             playerHealthScript.TakeDamage(damage);

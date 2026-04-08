@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TowerAttack : MonoBehaviour, ITower
+public class TowerAttack : MonoBehaviour, IDamageTower
 {
     [SerializeField] private TowerData currentTower;
     [SerializeField] private GameObject towerTurret;
@@ -132,7 +132,7 @@ public class TowerAttack : MonoBehaviour, ITower
         canPoison = value;
     }
 
-    private void Shoot(Enemy enemy)
+    public void Shoot(Enemy enemy)
     {
         float finalDamage = attackDamage;
 

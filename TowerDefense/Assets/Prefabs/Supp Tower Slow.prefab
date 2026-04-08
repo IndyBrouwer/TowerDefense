@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1849885541329604649}
   - component: {fileID: 6347840248097002196}
   - component: {fileID: 3443118721702090791}
+  - component: {fileID: -8385487178997762968}
   m_Layer: 0
   m_Name: Supp Tower Slow
   m_TagString: SuppTower
@@ -66,6 +67,27 @@ MonoBehaviour:
   bigCrystal: {fileID: 9107548356562504242}
   smallCrystals: {fileID: 5160229168007359924}
   thisTower: {fileID: 11400000, guid: 9d9576b56a52f6e43a846bf5f353273b, type: 2}
+--- !u!65 &-8385487178997762968
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362283593277459091}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!1 &5160229168007359924
 GameObject:
   m_ObjectHideFlags: 0
