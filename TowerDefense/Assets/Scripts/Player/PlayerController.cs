@@ -39,8 +39,10 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.collider.gameObject.CompareTag("AttackTower"))
             {
+                TowerAttack AttackTowerScript = hit.collider.gameObject.GetComponent<TowerAttack>();
+
                 //Open upgrade shop menu
-                upgradeShopControllerScript.OnPlayerLeftClicked();
+                upgradeShopControllerScript.OnPlayerLeftClicked(AttackTowerScript);
             }
             else if (hit.collider.gameObject.CompareTag("PlacingTile"))
             {
@@ -50,8 +52,6 @@ public class PlayerController : MonoBehaviour
                 clickLocked = true;
                 clickTimer = clickLockDuration;
             }
-
-            Debug.Log("Player left clicked on: " + hit.collider.gameObject.name);
         }
     }
 

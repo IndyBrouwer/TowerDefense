@@ -24,6 +24,11 @@ public class GameStateManager : MonoBehaviour
         currentState.Enter();
     }
 
+    public IGameState GetGameState()
+    {
+        return currentState;
+    }
+
     public void StartBuildPhase()
     {
         SetState(buildPhase);

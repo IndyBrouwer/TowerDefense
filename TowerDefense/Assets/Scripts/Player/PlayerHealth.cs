@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         currentHealth = maxHealth;
 
-        Image fillImage = healthBar.fillRect.GetComponentInChildren<Image>();
+        fillImage = healthBar.fillRect.GetComponentInChildren<Image>();
     }
 
     public void TakeDamage(float amount)

@@ -1,8 +1,9 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerAttack : MonoBehaviour, IDamageTower
+public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
 {
-    [SerializeField] private TowerData currentTower;
+    [HideInInspector] public TowerData currentTower;
     [SerializeField] private GameObject towerTurret;
     [SerializeField] private float turretRotationSpeed = 5f;
 
@@ -19,6 +20,14 @@ public class TowerAttack : MonoBehaviour, IDamageTower
     public bool canPoison;
     private bool isBoosted;
 
+    public List<UpgradeData> availableUpgradesCopy;
+
+    [Header("Upgrade Levels")]
+    [SerializeField] private bool overrideStartingDamageLevel = false;
+    [SerializeField] private UpgradeLevel overrideDamageLevel;
+    private UpgradeLevel currentDamageLevel;
+    private UpgradeLevel currentSpeedLevel;
+
     private Enemy currentTarget;
 
     private void Start()
@@ -26,6 +35,24 @@ public class TowerAttack : MonoBehaviour, IDamageTower
         attackDamage = currentTower.Power;
         attackRange = currentTower.Range;
         fireCooldown = currentTower.FireCooldown;
+
+        availableUpgradesCopy = new List<UpgradeData>(currentTower.availableUpgrades);
+
+        currentDamageLevel = currentTower.acceptingDamageLevel;
+        currentSpeedLevel = currentTower.acceptingSpeedLevel;
+
+        if (overrideStartingDamageLevel)
+        {
+            currentDamageLevel = overrideDamageLevel;
+
+            foreach (var upgrade in availableUpgradesCopy)
+            {
+                if (upgrade.upgradeType == UpgradeType.Damage && upgrade.upgradeLevel == currentDamageLevel)
+                {
+                    attackDamage *= upgrade.upgradeValue;
+                }
+            }
+        }
     }
 
 
@@ -138,10 +165,12 @@ public class TowerAttack : MonoBehaviour, IDamageTower
 
         if (isBoosted)
         {
-            finalDamage *= 1.5f;
+            finalDamage *= 1.4f;
         }
 
         enemy.TakeDamage(finalDamage);
+
+        Debug.Log($"Shot enemy for {finalDamage} damage.");
 
         if (canPoison)
         {
@@ -153,5 +182,60 @@ public class TowerAttack : MonoBehaviour, IDamageTower
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
+    public bool IsUpgradable()
+    {
+        //Check if the tower can be upgraded (based on available upgrades and their levels)
+        if (availableUpgradesCopy.Count == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public void UpgradeSpeed(float value, UpgradeData upgradeData)
+    {
+        //Apply clicked upgrade effect
+        fireCooldown -= value;
+
+        //Change tower accepting level to the next level so that next upgrade will be different
+        if (upgradeData.nextUpgrade != null)
+        {
+            currentSpeedLevel = upgradeData.nextUpgrade.upgradeLevel;
+        }
+
+        //Remove the just applied upgrade from the available upgrades list
+        availableUpgradesCopy.Remove(upgradeData);
+    }
+
+    public void UpgradeDamage(float value, UpgradeData upgradeData)
+    {
+        //Apply clicked upgrade effect
+        attackDamage *= value;
+
+        //Change tower accepting level to the next level so that next upgrade will be different
+        if (upgradeData.nextUpgrade != null)
+        {
+            currentDamageLevel = upgradeData.nextUpgrade.upgradeLevel;
+        }
+
+        Debug.Log($"Damage after upgrade: {attackDamage}");
+
+        //Remove the just applied upgrade from the available upgrades list
+        availableUpgradesCopy.Remove(upgradeData);
+    }
+
+    public UpgradeLevel GetDamageLevel()
+    {
+        return currentDamageLevel;
+    }
+
+    public UpgradeLevel GetSpeedLevel()
+    {
+        return currentSpeedLevel;
     }
 }

@@ -21,5 +21,8 @@ MonoBehaviour:
   Power: 0
   Range: 3
   FireCooldown: 0
+  acceptingDamageLevel: 0
+  acceptingSpeedLevel: 0
+  availableUpgrades: []
   Cost: 20
   TowerColor: {r: 0.48742133, g: 1, b: 0.89748424, a: 0}

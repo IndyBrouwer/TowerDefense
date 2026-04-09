@@ -421,7 +421,7 @@ MonoBehaviour:
   - enemyTypes:
     - {fileID: 11400000, guid: 344a7a2371a95f347aab4117cb14dbdc, type: 2}
     - {fileID: 11400000, guid: 61bd033a0d80c634398f9bbb0f6e9219, type: 2}
-    enemyCounts: 0400000001000000
+    enemyCounts: 0600000001000000
     spawnInterval: 2
     shopCards:
     - {fileID: 11400000, guid: e74a952c59030a548b63b51d93574797, type: 2}
@@ -10402,6 +10402,7 @@ GameObject:
   - component: {fileID: 432809592}
   - component: {fileID: 432809591}
   - component: {fileID: 432809590}
+  - component: {fileID: 432809595}
   m_Layer: 5
   m_Name: Upgrade Shop Canvas
   m_TagString: Untagged
@@ -10492,6 +10493,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 2}
   m_SizeDelta: {x: 5, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &432809595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432809589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6987d8f2d421e54ab204ac013d04089, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DamageBuyButton: {fileID: 1373436352}
+  SpeedBuyButton: {fileID: 496176016}
+  damageUpgradeName: {fileID: 191614405}
+  speedUpgradeName: {fileID: 968028314}
+  damageUpgradeCost: {fileID: 45317018}
+  speedUpgradeCost: {fileID: 6848893}
+  walletScript: {fileID: 369656455}
 --- !u!1001 &437857611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11899,7 +11919,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 496176019}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 432809595}
+        m_TargetAssemblyTypeName: UpgradeUI, Assembly-CSharp
+        m_MethodName: ApplySpeedUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &496176019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30628,6 +30660,14 @@ PrefabInstance:
       propertyPath: towerTurret
       value: 
       objectReference: {fileID: 488537466}
+    - target: {fileID: 5048014227286085140, guid: 401550001fada6641b2e0f3748cb34dd, type: 3}
+      propertyPath: overrideDamageLevel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5048014227286085140, guid: 401550001fada6641b2e0f3748cb34dd, type: 3}
+      propertyPath: overrideStartingDamageLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5966710816964869884, guid: 401550001fada6641b2e0f3748cb34dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
@@ -30959,7 +30999,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1373436355}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 432809595}
+        m_TargetAssemblyTypeName: UpgradeUI, Assembly-CSharp
+        m_MethodName: ApplyAttackUpgrade
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1373436355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31649,6 +31701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18cc140eb79808c48a12153858256f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickLockDuration: 0.5
   towerPlacementScript: {fileID: 574374592}
   upgradeShopControllerScript: {fileID: 1630916146}
 --- !u!1001 &1403413877
@@ -36016,6 +36069,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeShopMenu: {fileID: 432809589}
+  upgradeUIScript: {fileID: 432809595}
+  gameStateManagerScript: {fileID: 1818770442}
 --- !u!1001 &1631383082
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43030,7 +43085,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0000
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4c18963ceff2ee940a6276f11f377e61, type: 2}
   m_sharedMaterial: {fileID: -1842668879071668845, guid: 4c18963ceff2ee940a6276f11f377e61, type: 2}

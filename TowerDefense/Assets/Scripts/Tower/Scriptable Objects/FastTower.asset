@@ -21,5 +21,12 @@ MonoBehaviour:
   Power: 100
   Range: 3
   FireCooldown: 0.5
+  acceptingDamageLevel: 1
+  acceptingSpeedLevel: 1
+  availableUpgrades:
+  - {fileID: 11400000, guid: 618bd444346a7b841b85381169565474, type: 2}
+  - {fileID: 11400000, guid: d12b517229bf3c14eaf22efa97fbf877, type: 2}
+  - {fileID: 11400000, guid: 50f51f43dc4aeca469a4911c29349503, type: 2}
+  - {fileID: 11400000, guid: fb9bc2bbad2617d4fa8061c4bf6bd529, type: 2}
   Cost: 150
   TowerColor: {r: 1, g: 1, b: 1, a: 0}

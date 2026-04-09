@@ -16,6 +16,10 @@ public class TowerData : ScriptableObject
     public float Range;
     public float FireCooldown;
 
+    [Header("Upgrade Levels")]
+    public UpgradeLevel acceptingDamageLevel;
+    public UpgradeLevel acceptingSpeedLevel;
+
     public List<UpgradeData> availableUpgrades;
 
     public int Cost;

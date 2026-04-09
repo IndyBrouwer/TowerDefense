@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: Speed 1
   m_EditorClassIdentifier: 
   upgradeName: Speed 1
-  cost: 40
+  upgradeType: 1
+  upgradeLevel: 1
   nextUpgrade: {fileID: 11400000, guid: 50f51f43dc4aeca469a4911c29349503, type: 2}
+  upgradeValue: 0.5
+  upgradeCost: 40

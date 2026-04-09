@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: Damage 1
   m_EditorClassIdentifier: 
   upgradeName: Damage 1
-  cost: 40
+  upgradeType: 0
+  upgradeLevel: 1
   nextUpgrade: {fileID: 11400000, guid: fb9bc2bbad2617d4fa8061c4bf6bd529, type: 2}
+  upgradeValue: 1.2
+  upgradeCost: 40

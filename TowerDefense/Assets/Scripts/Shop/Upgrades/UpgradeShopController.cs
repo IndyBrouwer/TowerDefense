@@ -3,13 +3,34 @@ using UnityEngine;
 public class UpgradeShopController : MonoBehaviour
 {
     public GameObject upgradeShopMenu;
+    private TowerAttack towerAttackScript;
 
-    public void OnPlayerLeftClicked()
+    [SerializeField] private UpgradeUI upgradeUIScript;
+    [SerializeField] private GameStateManager gameStateManagerScript;
+
+    public void OnPlayerLeftClicked(TowerAttack AttackTowerScript)
     {
-        //Update shop menu with the tower's upgrade options
+        //Check if in build mode, if not return
+        if (gameStateManagerScript.GetGameState() is WavePhase)
+        {
+            return;
+        }
 
-        //Enable the shop menu at mouse position, if on top half of the screen place it below the mouse, if on bottom half place it above the mouse
-        EnableShop();
+        towerAttackScript = AttackTowerScript;
+
+        if (towerAttackScript.IsUpgradable())
+        {
+            //Update shop menu with the tower's upgrade options
+            upgradeUIScript.SetupShop(towerAttackScript);
+
+            //Enable the shop menu at mouse position, if on top half of the screen place it below the mouse, if on bottom half place it above the mouse
+            EnableShop();
+        }
+        else
+        {
+            //Show message that no upgrades are available
+            Debug.Log("No upgrades available for this tower.");
+        }
     }
 
     public void OnPlayerRightClicked()
