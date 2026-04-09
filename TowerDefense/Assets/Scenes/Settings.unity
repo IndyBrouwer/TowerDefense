@@ -29872,7 +29872,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 883147457}
           m_TargetAssemblyTypeName: UISounds, Assembly-CSharp
-          m_MethodName: Slide
+          m_MethodName: Click
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -30980,7 +30980,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 883147457}
           m_TargetAssemblyTypeName: UISounds, Assembly-CSharp
-          m_MethodName: Slide
+          m_MethodName: Click
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -31252,7 +31252,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 883147457}
           m_TargetAssemblyTypeName: UISounds, Assembly-CSharp
-          m_MethodName: Slide
+          m_MethodName: Click
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

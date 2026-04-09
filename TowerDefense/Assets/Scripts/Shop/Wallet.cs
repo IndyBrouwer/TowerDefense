@@ -4,10 +4,12 @@ using UnityEngine;
 public class Wallet : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI currencyText;
+    [SerializeField] private int maxCurrencyAmount = 99999;
     private int currencyAmount;
 
     [SerializeField] private AudioClip earnSound;
     [SerializeField] private AudioClip spendSound;
+    [SerializeField] private AudioClip noFundsSound;
 
     public void AddCurrency(int income)
     {
@@ -15,6 +17,12 @@ public class Wallet : MonoBehaviour
 
         //Add incoming money to total money
         currencyAmount += income;
+        
+        //Clamp currency amount to maxCurrencyAmount
+        if (currencyAmount > maxCurrencyAmount)
+        {
+            currencyAmount = maxCurrencyAmount;
+        }
 
         //Set UI to new amount of money 
         currencyText.text = currencyAmount.ToString();
@@ -24,7 +32,8 @@ public class Wallet : MonoBehaviour
     {
         if (currencyAmount < costs)
         {
-            Debug.LogWarning("Not enough currency to complete the transaction!");
+            Debug.LogWarning("Not enough currency to complete the purchase!");
+            AudioManager.Instance.sfxManager.PlaySFX(noFundsSound);
             return;
         }
 
