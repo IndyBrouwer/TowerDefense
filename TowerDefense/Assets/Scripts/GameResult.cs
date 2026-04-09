@@ -8,6 +8,9 @@ public class GameResult : MonoBehaviour
     [SerializeField] private GameObject GameResultPanel;
     [SerializeField] private TextMeshProUGUI GameResultText;
 
+    [SerializeField] private AudioClip victorySound;
+    [SerializeField] private AudioClip defeatSound;
+
     public float DelayMenuLoad = 7f;
 
     public void ShowVictory()
@@ -18,6 +21,7 @@ public class GameResult : MonoBehaviour
         resultCanvas.alpha = 1f;
 
         GameResultText.text = "VICTORY!";
+        AudioManager.Instance.sfxManager.PlaySFX(victorySound);
 
         //Start delay of loading main menu
         StartCoroutine(LoadMenuScene());
@@ -31,6 +35,7 @@ public class GameResult : MonoBehaviour
         resultCanvas.alpha = 1f;
 
         GameResultText.text = "DEFEAT!";
+        AudioManager.Instance.sfxManager.PlaySFX(defeatSound);
 
         //Start delay of loading main menu
         StartCoroutine(LoadMenuScene());
