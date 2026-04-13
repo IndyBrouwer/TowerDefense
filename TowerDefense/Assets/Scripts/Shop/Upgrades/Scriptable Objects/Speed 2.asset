@@ -15,6 +15,6 @@ MonoBehaviour:
   upgradeName: Speed 2
   upgradeType: 1
   upgradeLevel: 2
-  nextUpgrade: {fileID: 0}
+  isHighestLevel: 1
   upgradeValue: 1
   upgradeCost: 80

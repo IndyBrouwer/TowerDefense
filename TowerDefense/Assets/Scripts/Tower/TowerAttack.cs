@@ -11,8 +11,6 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
     private float attackRange;
     private float attackDamage;
     private float fireCooldown;
-
-    public float targetLockTime = 2f;
     private float fireTimer = 0f;
 
     [Header("Tower Effect Bools")]
@@ -23,9 +21,10 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
 
     [Header("Upgrade Levels")]
     [SerializeField] private bool overrideStartingDamageLevel = false;
-    [SerializeField] private UpgradeLevel overrideDamageLevel;
-    private UpgradeLevel currentDamageLevel;
-    private UpgradeLevel currentSpeedLevel;
+    [SerializeField] private UpgradeLevel startingDamageLevel;
+    private UpgradeLevel currentAcceptingDamageLevel;
+    private UpgradeLevel currentAcceptingSpeedLevel;
+    UpgradeData upgradeToRemove = null;
 
     private Enemy currentTarget;
 
@@ -51,20 +50,29 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
 
         availableUpgradesCopy = new List<UpgradeData>(currentTower.availableUpgrades);
 
-        currentDamageLevel = currentTower.acceptingDamageLevel;
-        currentSpeedLevel = currentTower.acceptingSpeedLevel;
+        currentAcceptingDamageLevel = currentTower.acceptingDamageLevel;
+        currentAcceptingSpeedLevel = currentTower.acceptingSpeedLevel;
 
         if (overrideStartingDamageLevel)
         {
-            currentDamageLevel = overrideDamageLevel;
+            currentAcceptingDamageLevel = startingDamageLevel;
 
             foreach (var upgrade in availableUpgradesCopy)
             {
-                if (upgrade.upgradeType == UpgradeType.Damage && upgrade.upgradeLevel == currentDamageLevel)
+                if (upgrade.upgradeType == UpgradeType.Damage && upgrade.upgradeLevel == startingDamageLevel)
                 {
                     attackDamage *= upgrade.upgradeValue;
+                    upgradeToRemove = upgrade;
+                    break;
                 }
             }
+
+            if (upgradeToRemove != null)
+            {
+                availableUpgradesCopy.Remove(upgradeToRemove);
+            }
+
+            currentAcceptingDamageLevel = FindNextDamageLevel();
         }
     }
 
@@ -208,9 +216,9 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
         fireCooldown -= value;
 
         //Change tower accepting level to the next level so that next upgrade will be different
-        if (upgradeData.nextUpgrade != null)
+        if (upgradeData != null)
         {
-            currentSpeedLevel = upgradeData.nextUpgrade.upgradeLevel;
+            currentAcceptingSpeedLevel = upgradeData.upgradeLevel + 1;
         }
 
         //Remove the just applied upgrade from the available upgrades list
@@ -223,9 +231,9 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
         attackDamage *= value;
 
         //Change tower accepting level to the next level so that next upgrade will be different
-        if (upgradeData.nextUpgrade != null)
+        if (upgradeData != null)
         {
-            currentDamageLevel = upgradeData.nextUpgrade.upgradeLevel;
+            currentAcceptingDamageLevel = upgradeData.upgradeLevel + 1;
         }
 
         Debug.Log($"Damage after upgrade: {attackDamage}");
@@ -234,14 +242,28 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
         availableUpgradesCopy.Remove(upgradeData);
     }
 
-    public UpgradeLevel GetDamageLevel()
+    private UpgradeLevel FindNextDamageLevel()
     {
-        return currentDamageLevel;
+        foreach (var upgrade in availableUpgradesCopy)
+        {
+            if (upgrade.upgradeType == UpgradeType.Damage)
+            {
+                return upgrade.upgradeLevel;
+            }
+        }
+
+        //Fallback
+        return currentAcceptingDamageLevel;
     }
 
-    public UpgradeLevel GetSpeedLevel()
+    public UpgradeLevel GetAcceptingDamageLevel()
     {
-        return currentSpeedLevel;
+        return currentAcceptingDamageLevel;
+    }
+
+    public UpgradeLevel GetAcceptingSpeedLevel()
+    {
+        return currentAcceptingSpeedLevel;
     }
 
     public void HighlightTower()

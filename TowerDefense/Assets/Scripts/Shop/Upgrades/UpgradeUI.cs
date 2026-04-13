@@ -30,114 +30,84 @@ public class UpgradeUI : MonoBehaviour
     {
         towerAttackScript = towerAttack;
 
-        DamageBuyButton.SetActive(true);
-        SpeedBuyButton.SetActive(true);
+        DamageBuyButton.SetActive(false);
+        SpeedBuyButton.SetActive(false);
 
-        //From towerAttack.availableUpgradesCopy, find upgrade names and cost to set them in the UI
+        currentDamageUpgrade = null;
+        currentSpeedUpgrade = null;
+
         foreach (var upgrade in towerAttack.availableUpgradesCopy)
         {
-            //Damage
-            if (upgrade.upgradeType == UpgradeType.Damage)
+            //DAMAGE
+            if (upgrade.upgradeType == UpgradeType.Damage &&
+                (int)upgrade.upgradeLevel == (int)towerAttack.GetAcceptingDamageLevel())
             {
-                if ((int)upgrade.upgradeLevel == (int)towerAttack.GetDamageLevel())
-                {
-                    currentDamageUpgrade = upgrade;
+                currentDamageUpgrade = upgrade;
+                AttackUpgradeValue = upgrade.upgradeValue;
 
-                    //Check if the upgrade is maxed
-                    if (upgrade.nextUpgrade == null)
-                    {
-                        DamageBuyButton.SetActive(false);
-                        damageUpgradeName.text = "Damage Maxed";
-                        damageUpgradeCost.text = "";
-                    }
-                    else
-                    {
-                        DamageBuyButton.SetActive(true);
-                        damageUpgradeName.text = upgrade.upgradeName;
-                        damageUpgradeCost.text = upgrade.upgradeCost.ToString();
-                    }
-
-                    AttackUpgradeValue = upgrade.upgradeValue;
-                }
+                DamageBuyButton.SetActive(true);
+                damageUpgradeName.text = upgrade.upgradeName;
+                damageUpgradeCost.text = upgrade.upgradeCost.ToString();
             }
 
-            //Speed
-            if (upgrade.upgradeType == UpgradeType.Speed)
+            //SPEED
+            if (upgrade.upgradeType == UpgradeType.Speed &&
+                (int)upgrade.upgradeLevel == (int)towerAttack.GetAcceptingSpeedLevel())
             {
-                if ((int)upgrade.upgradeLevel == (int)towerAttack.GetSpeedLevel())
-                {
-                    currentSpeedUpgrade = upgrade;
+                currentSpeedUpgrade = upgrade;
+                SpeedUpgradeValue = upgrade.upgradeValue;
 
-                    //Check if upgrade is maxed
-                    if (upgrade.nextUpgrade == null)
-                    {
-                        SpeedBuyButton.SetActive(false);
-                        speedUpgradeName.text = "Speed Maxed";
-                        speedUpgradeCost.text = "";
-                    }
-                    else
-                    {
-                        SpeedBuyButton.SetActive(true);
-                        speedUpgradeName.text = upgrade.upgradeName;
-                        speedUpgradeCost.text = upgrade.upgradeCost.ToString();
-                    }
-
-                    SpeedUpgradeValue = upgrade.upgradeValue;
-                }
+                SpeedBuyButton.SetActive(true);
+                speedUpgradeName.text = upgrade.upgradeName;
+                speedUpgradeCost.text = upgrade.upgradeCost.ToString();
             }
+        }
+
+        //If nothing found = maxed
+        if (currentDamageUpgrade == null)
+        {
+            DamageBuyButton.SetActive(false);
+            damageUpgradeName.text = "Damage Maxed";
+            damageUpgradeCost.text = "";
+        }
+
+        if (currentSpeedUpgrade == null)
+        {
+            SpeedBuyButton.SetActive(false);
+            speedUpgradeName.text = "Speed Maxed";
+            speedUpgradeCost.text = "";
         }
     }
 
     public void ApplyAttackUpgrade()
     {
         //Check if the player can afford the upgrade
-        if (walletScript.CanAfford(currentDamageUpgrade.upgradeCost))
-        {
-            //Deduct currency cost from wallet
-            walletScript.RemoveCurrency(currentDamageUpgrade.upgradeCost);
-
-            towerAttackScript.UpgradeDamage(AttackUpgradeValue, currentDamageUpgrade);
-
-            if (currentDamageUpgrade.nextUpgrade != null)
-            {
-                SetupShop(towerAttackScript);
-            }
-            else
-            {
-                //If there is no next upgrade, disable the upgrade section and show "Maxed" text
-                DamageBuyButton.SetActive(false);
-                damageUpgradeName.text = "Damage Maxed";
-            }
-        }
-        else
+        if (!walletScript.CanAfford(currentDamageUpgrade.upgradeCost))
         {
             AudioManager.Instance.sfxManager.PlaySFX(walletScript.noFundsSound);
+            return;
         }
+
+        walletScript.RemoveCurrency(currentDamageUpgrade.upgradeCost);
+
+        towerAttackScript.UpgradeDamage(AttackUpgradeValue, currentDamageUpgrade);
+
+        SetupShop(towerAttackScript);
     }
 
     public void ApplySpeedUpgrade()
     {
-        if (walletScript.CanAfford(currentSpeedUpgrade.upgradeCost))
-        {
-            //Deduct currency cost from wallet
-            walletScript.RemoveCurrency(currentSpeedUpgrade.upgradeCost);
-
-            towerAttackScript.UpgradeSpeed(SpeedUpgradeValue, currentSpeedUpgrade);
-
-            if (currentSpeedUpgrade.nextUpgrade != null)
-            {
-                SetupShop(towerAttackScript);
-            }
-            else
-            {
-                //If there is no next upgrade, disable the upgrade section and show "Maxed" text
-                SpeedBuyButton.SetActive(false);
-                speedUpgradeName.text = "Speed Maxed";
-            }
-        }
-        else
+        //Check if the player can afford the upgrade
+        if (!walletScript.CanAfford(currentSpeedUpgrade.upgradeCost))
         {
             AudioManager.Instance.sfxManager.PlaySFX(walletScript.noFundsSound);
+            return;
         }
+
+        walletScript.RemoveCurrency(currentSpeedUpgrade.upgradeCost);
+
+        towerAttackScript.UpgradeSpeed(SpeedUpgradeValue, currentSpeedUpgrade);
+
+        SetupShop(towerAttackScript);
     }
 }

@@ -26,11 +26,6 @@ public class UpgradeShopController : MonoBehaviour
             //Enable the shop menu at mouse position, if on top half of the screen place it below the mouse, if on bottom half place it above the mouse
             EnableShop();
         }
-        else
-        {
-            //Show message that no upgrades are available
-            Debug.Log("No upgrades available for this tower.");
-        }
     }
 
     public void OnPlayerRightClicked()

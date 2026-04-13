@@ -7,8 +7,7 @@ public class UpgradeData : ScriptableObject
     public UpgradeType upgradeType;
     public UpgradeLevel upgradeLevel;
 
-    [Header("The 'leveled up' upgrade from this upgrade")]
-    public UpgradeData nextUpgrade;
+    public bool isHighestLevel;
 
     public float upgradeValue;
     public int upgradeCost;

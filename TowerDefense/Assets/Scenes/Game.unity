@@ -30690,6 +30690,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5048014227286085140, guid: 401550001fada6641b2e0f3748cb34dd, type: 3}
+      propertyPath: startingDamageLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5048014227286085140, guid: 401550001fada6641b2e0f3748cb34dd, type: 3}
       propertyPath: overrideStartingDamageLevel
       value: 1
       objectReference: {fileID: 0}
@@ -38457,7 +38461,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1750015294
 RectTransform:
   m_ObjectHideFlags: 0
