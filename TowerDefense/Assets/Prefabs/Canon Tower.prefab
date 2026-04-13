@@ -346,7 +346,7 @@ MonoBehaviour:
   availableUpgradesCopy: []
   overrideStartingDamageLevel: 0
   overrideDamageLevel: 0
-  damageColor: {r: 0, g: 0.8352941, b: 1, a: 1}
+  hoverColor: {r: 0, g: 0.70980394, b: 1, a: 0}
 --- !u!65 &7544552793336370141
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TowerName: Poison Tower
   TowerType: Support
-  TowerSprite: {fileID: 21300000, guid: f68fe165e9033c449a0ebb68d89f0020, type: 3}
+  TowerSprite: {fileID: 21300000, guid: 64a3f125390a5f84d851c1917633bb2c, type: 3}
   TowerDescription: A supportive tower, this tower deals damage over time to enemies
     in range.
   TowerPrefab: {fileID: 15085879552625207, guid: fb6d7358973df7545a0d27c55b027868, type: 3}
@@ -25,4 +25,4 @@ MonoBehaviour:
   acceptingSpeedLevel: 0
   availableUpgrades: []
   Cost: 20
-  TowerColor: {r: 1, g: 0.8124187, b: 0.58176094, a: 0}
+  TowerColor: {r: 0.99371064, g: 0.9400091, b: 0.89683944, a: 0}

@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
     public float health;
     private float damage;
     public float speed;
+    public float LifeTime;
 
     [Header("Invincibility")]
     [SerializeField] private float invincibilityDuration = 0.5f;
@@ -48,6 +49,8 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
 
     private void Update()
     {
+        LifeTime += Time.deltaTime;
+
         //Check if the enemy has reached its destination
         if (agent.remainingDistance <= agent.stoppingDistance && !agent.pathPending)
         {

@@ -14,7 +14,6 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
 
     public float targetLockTime = 2f;
     private float fireTimer = 0f;
-    private float lockTimer = 0f;
 
     [Header("Tower Effect Bools")]
     public bool canPoison;
@@ -32,7 +31,7 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
 
     [Header("Visuals")]
     private Renderer[] renderers;
-    public Color damageColor;
+    public Color hoverColor;
     private Color[] originalColors;
 
 
@@ -77,28 +76,17 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
             fireTimer -= Time.deltaTime;
         }
 
-        if (lockTimer > 0f)
-        {
-            lockTimer -= Time.deltaTime;
-        }
-
         //If no current target or target out of range, reset target
         if (currentTarget == null || !IsInRange(currentTarget))
         {
             //No enemy detected or out of range, find a new target
             currentTarget = null;
-            lockTimer = 0f;
         }
 
         // Try to lock onto a new target if none is currently locked
-        if (currentTarget == null && lockTimer <= 0f)
+        if (currentTarget == null)
         {
-            currentTarget = FindClosestEnemy();
-
-            if (currentTarget != null)
-            {
-                lockTimer = targetLockTime;
-            }
+            currentTarget = FindOldestEnemy();
         }
 
         // Attack the current target if possible
@@ -114,26 +102,29 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
         }
     }
 
-    private Enemy FindClosestEnemy()
+    private Enemy FindOldestEnemy()
     {
         Enemy[] enemies = FindObjectsByType<Enemy>(FindObjectsSortMode.None);
 
         //Use Infinity so there's always something to compare against (for deciding closest enemy)
-        float closestDistance = Mathf.Infinity;
-        Enemy closestEnemy = null;
+        float oldestTime = -Mathf.Infinity;
+        Enemy oldestEnemy = null;
 
         foreach (Enemy enemy in enemies)
         {
             float distance = Vector3.Distance(transform.position, enemy.transform.position);
 
-            if (distance < attackRange && distance < closestDistance)
+            if (distance < attackRange)
             {
-                closestDistance = distance;
-                closestEnemy = enemy;
+                if (enemy.LifeTime > oldestTime)
+                {
+                    oldestTime = enemy.LifeTime;
+                    oldestEnemy = enemy;
+                }
             }
         }
 
-        return closestEnemy;
+        return oldestEnemy;
     }
 
     private void RotateTurretTowards(Enemy target)
@@ -258,7 +249,7 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
         //Change the color of all renderers to damageColor
         for (int index = 0; index < renderers.Length; index++)
         {
-            renderers[index].material.color = damageColor;
+            renderers[index].material.color = hoverColor;
         }
     }
 
