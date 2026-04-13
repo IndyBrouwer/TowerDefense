@@ -9,7 +9,7 @@ public class Wallet : MonoBehaviour
 
     [SerializeField] private AudioClip earnSound;
     [SerializeField] private AudioClip spendSound;
-    [SerializeField] private AudioClip noFundsSound;
+    public AudioClip noFundsSound;
 
     public void AddCurrency(int income)
     {
@@ -45,6 +45,11 @@ public class Wallet : MonoBehaviour
 
         //Set UI to new amount of money 
         currencyText.text = currencyAmount.ToString();
+    }
+
+    public bool CanAfford(int costs)
+    {
+        return currencyAmount >= costs;
     }
 
     public int GetCurrencyAmount()

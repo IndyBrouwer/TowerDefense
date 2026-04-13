@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TowerName: Default Tower
   TowerType: Offense
-  TowerSprite: {fileID: 0}
+  TowerSprite: {fileID: 21300000, guid: 5e9da0f106b16e14fbe4e7a040e78f02, type: 3}
   TowerDescription: An offensive tower, this is the standard attacking tower.
   TowerPrefab: {fileID: 6450794367201027142, guid: 401550001fada6641b2e0f3748cb34dd, type: 3}
   Power: 250

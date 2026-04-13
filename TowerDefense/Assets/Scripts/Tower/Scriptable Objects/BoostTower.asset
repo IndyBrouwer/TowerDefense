@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TowerName: Boost Tower
   TowerType: Support
-  TowerSprite: {fileID: 0}
+  TowerSprite: {fileID: 21300000, guid: fafecfa2851b19948ad754fdfb5d0afc, type: 3}
   TowerDescription: A supportive tower, this tower causes offensive towers in range
     to deal more damage.
   TowerPrefab: {fileID: 1800266562124969194, guid: d2fa4295c277a7246855b87a1f2cc015, type: 3}

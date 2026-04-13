@@ -6,6 +6,7 @@ public class EnemySpawning : MonoBehaviour
 {
     [Header("Spawn Point")]
     [SerializeField] private Transform spawnPoint;
+    public bool canSpawn = true;
 
     [Header("Wave references")]
     [SerializeField] private Wave[] enemyWave;
@@ -23,7 +24,7 @@ public class EnemySpawning : MonoBehaviour
     {
         waveCounterText.text = "Wave: " + (currentWaveIndex + 1) + "/" + enemyWave.Length;
 
-        if (AreAllWavesCompleted() == false)
+        if (AreAllWavesCompleted() == false && canSpawn)
         {
             StartCoroutine(SpawnWave(enemyWave[currentWaveIndex]));
 
@@ -51,6 +52,9 @@ public class EnemySpawning : MonoBehaviour
         //Inform the enemy manager about the total enemies in this wave
         enemyManagerScript.SetEnemies(totalEnemies);
 
+        //Calculate HP multiplier based on the current wave index
+        float hpMultiplier = Mathf.Pow(1.1f, currentWaveIndex);
+
         for (int enemyTypeIndex = 0; enemyTypeIndex < wave.enemyTypes.Length; enemyTypeIndex++)
         {
             EnemyData enemyType = wave.enemyTypes[enemyTypeIndex];
@@ -58,12 +62,18 @@ public class EnemySpawning : MonoBehaviour
 
             for (int spawnIndex = 0; spawnIndex < count; spawnIndex++)
             {
+                if (canSpawn == false)
+                {
+                    //Stop spawning if canSpawn is set to false
+                    yield break; 
+                }
+
                 GameObject newEnemy = Instantiate(enemyType.enemyPrefab, spawnPoint.position, Quaternion.identity);
 
                 Enemy enemyScript = newEnemy.GetComponent<Enemy>();
                 if (enemyScript != null)
                 {
-                    enemyScript.SetupEnemy(enemyType.enemyData, enemyManagerScript, walletScript);
+                    enemyScript.SetupEnemy(enemyType.enemyData, enemyManagerScript, walletScript, hpMultiplier);
                 }
 
                 yield return new WaitForSeconds(wave.spawnInterval);

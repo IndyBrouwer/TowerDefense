@@ -224,6 +224,10 @@ MonoBehaviour:
   turretRotationSpeed: 4
   targetLockTime: 2
   canPoison: 0
+  availableUpgradesCopy: []
+  overrideStartingDamageLevel: 0
+  overrideDamageLevel: 0
+  damageColor: {r: 0, g: 0.8352941, b: 1, a: 1}
 --- !u!65 &-3524509881120992791
 BoxCollider:
   m_ObjectHideFlags: 0

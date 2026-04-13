@@ -401,6 +401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 1830147201}
+  canSpawn: 1
   enemyWave:
   - enemyTypes:
     - {fileID: 11400000, guid: 344a7a2371a95f347aab4117cb14dbdc, type: 2}
@@ -420,8 +421,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: fbca58ee1a9c7e44e80531007634a394, type: 2}
   - enemyTypes:
     - {fileID: 11400000, guid: 344a7a2371a95f347aab4117cb14dbdc, type: 2}
-    - {fileID: 11400000, guid: 61bd033a0d80c634398f9bbb0f6e9219, type: 2}
-    enemyCounts: 0600000001000000
+    enemyCounts: 05000000
     spawnInterval: 2
     shopCards:
     - {fileID: 11400000, guid: e74a952c59030a548b63b51d93574797, type: 2}
@@ -429,7 +429,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 488aba1f4b5e2514db5f4d25e2832700, type: 2}
   - enemyTypes:
     - {fileID: 11400000, guid: 344a7a2371a95f347aab4117cb14dbdc, type: 2}
-    enemyCounts: 08000000
+    enemyCounts: 07000000
     spawnInterval: 2
     shopCards:
     - {fileID: 11400000, guid: 7c8069b9504b587479c35726810351b5, type: 2}
@@ -438,7 +438,7 @@ MonoBehaviour:
   - enemyTypes:
     - {fileID: 11400000, guid: 344a7a2371a95f347aab4117cb14dbdc, type: 2}
     - {fileID: 11400000, guid: 61bd033a0d80c634398f9bbb0f6e9219, type: 2}
-    enemyCounts: 0600000004000000
+    enemyCounts: 0600000002000000
     spawnInterval: 2
     shopCards:
     - {fileID: 11400000, guid: e74a952c59030a548b63b51d93574797, type: 2}
@@ -464,6 +464,26 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 488aba1f4b5e2514db5f4d25e2832700, type: 2}
     - {fileID: 11400000, guid: 7c8069b9504b587479c35726810351b5, type: 2}
     - {fileID: 11400000, guid: 14ac501f53e68c843870c0143b65dd37, type: 2}
+  - enemyTypes:
+    - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
+    - {fileID: 11400000, guid: 61bd033a0d80c634398f9bbb0f6e9219, type: 2}
+    - {fileID: 11400000, guid: 344a7a2371a95f347aab4117cb14dbdc, type: 2}
+    enemyCounts: 140000000a0000000a000000
+    spawnInterval: 2
+    shopCards:
+    - {fileID: 11400000, guid: e74a952c59030a548b63b51d93574797, type: 2}
+    - {fileID: 11400000, guid: 7c8069b9504b587479c35726810351b5, type: 2}
+    - {fileID: 11400000, guid: 488aba1f4b5e2514db5f4d25e2832700, type: 2}
+  - enemyTypes:
+    - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
+    - {fileID: 11400000, guid: 61bd033a0d80c634398f9bbb0f6e9219, type: 2}
+    - {fileID: 11400000, guid: 344a7a2371a95f347aab4117cb14dbdc, type: 2}
+    enemyCounts: 140000000a0000000a000000
+    spawnInterval: 2
+    shopCards:
+    - {fileID: 11400000, guid: e74a952c59030a548b63b51d93574797, type: 2}
+    - {fileID: 11400000, guid: 7c8069b9504b587479c35726810351b5, type: 2}
+    - {fileID: 11400000, guid: 488aba1f4b5e2514db5f4d25e2832700, type: 2}
   - enemyTypes:
     - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
     - {fileID: 11400000, guid: 61bd033a0d80c634398f9bbb0f6e9219, type: 2}
@@ -31623,7 +31643,19 @@ MonoBehaviour:
     m_ActionId: 15cef263-9014-4fd5-94d9-4e4a6234a6ef
     m_ActionName: 'UI/Cancel[/Keyboard/escape]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1397600806}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnTowerHover
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 32b35790-4ed0-4e9a-aa41-69ac6d629449
     m_ActionName: 'UI/Point[/Mouse/position,/Touchscreen/touch0/position,/Touchscreen/touch1/position,/Touchscreen/touch2/position,/Touchscreen/touch3/position,/Touchscreen/touch4/position,/Touchscreen/touch5/position,/Touchscreen/touch6/position,/Touchscreen/touch7/position,/Touchscreen/touch8/position,/Touchscreen/touch9/position]'
   - m_PersistentCalls:
@@ -31709,6 +31741,7 @@ MonoBehaviour:
   clickLockDuration: 0.5
   towerPlacementScript: {fileID: 574374592}
   upgradeShopControllerScript: {fileID: 1630916146}
+  gameStateManagerScript: {fileID: 1818770442}
 --- !u!1001 &1403413877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38007,8 +38040,9 @@ MonoBehaviour:
   healthBar: {fileID: 147994778}
   maxHealth: 100
   damageColor: {r: 1, g: 0, b: 0, a: 1}
-  flashDuration: 0.25
+  flashDuration: 0.4
   gameResultScript: {fileID: 369656454}
+  enemySpawningScript: {fileID: 666379}
 --- !u!1001 &1717945554
 PrefabInstance:
   m_ObjectHideFlags: 0

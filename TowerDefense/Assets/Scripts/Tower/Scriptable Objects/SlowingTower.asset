@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TowerName: SlowingTower
   TowerType: Support
-  TowerSprite: {fileID: 0}
+  TowerSprite: {fileID: 21300000, guid: 2bdfc136fb8085649b15d8dc1734ad25, type: 3}
   TowerDescription: A supportive tower, this tower slows nearby enemies.
   TowerPrefab: {fileID: 1362283593277459091, guid: ba8227d4f68dacf4f841f437fb60ba97, type: 3}
   Power: 0

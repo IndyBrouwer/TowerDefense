@@ -4,16 +4,17 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour, IEnemy, IDamageable
 {
-    private NavMeshAgent agent;
-    private float health;
+    public NavMeshAgent agent;
+    public float health;
     private float damage;
-    private float speed;
+    public float speed;
 
     [Header("Invincibility")]
     [SerializeField] private float invincibilityDuration = 0.5f;
     private bool isInvincible = false;
 
     private bool isDead = false;
+    public bool canNotDie = false;
 
     [Header("Damage Flash Effect")]
     private Renderer[] renderers;
@@ -54,13 +55,13 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
         }
     }
 
-    public void SetupEnemy(EnemyData data, EnemyManager enemyManager, Wallet walletScript)
+    public void SetupEnemy(EnemyData data, EnemyManager enemyManager, Wallet walletScript, float hpMultiplier)
     {
         enemyData = data;
         enemyManagerScript = enemyManager;
         wallet = walletScript;
 
-        health = data.maxHealth;
+        health = data.maxHealth * hpMultiplier;
         damage = data.damage;
         speed = data.speed;
 
@@ -174,7 +175,7 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
 
     private void Die()
     {
-        if (isDead)
+        if (isDead || canNotDie)
         {
             return;
         }

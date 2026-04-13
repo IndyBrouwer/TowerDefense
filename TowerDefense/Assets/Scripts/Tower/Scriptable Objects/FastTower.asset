@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TowerName: Rapid Fire Tower
   TowerType: Offense
-  TowerSprite: {fileID: 0}
+  TowerSprite: {fileID: 21300000, guid: ff7a87b87cd63b948ad7630efd2339e3, type: 3}
   TowerDescription: An offensive tower, this tower shoots a lot faster but deals
     less damage. Also has a little less range.
   TowerPrefab: {fileID: 592530463394945460, guid: a284fd5781844884fb7dc42daaa0ee8b, type: 3}

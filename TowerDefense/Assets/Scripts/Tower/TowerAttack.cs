@@ -30,8 +30,22 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
 
     private Enemy currentTarget;
 
+    [Header("Visuals")]
+    private Renderer[] renderers;
+    public Color damageColor;
+    private Color[] originalColors;
+
+
     private void Start()
     {
+        renderers = GetComponentsInChildren<Renderer>();
+
+        originalColors = new Color[renderers.Length];
+        for (int index = 0; index < renderers.Length; index++)
+        {
+            originalColors[index] = renderers[index].material.color;
+        }
+
         attackDamage = currentTower.Power;
         attackRange = currentTower.Range;
         fireCooldown = currentTower.FireCooldown;
@@ -237,5 +251,22 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
     public UpgradeLevel GetSpeedLevel()
     {
         return currentSpeedLevel;
+    }
+
+    public void HighlightTower()
+    {
+        //Change the color of all renderers to damageColor
+        for (int index = 0; index < renderers.Length; index++)
+        {
+            renderers[index].material.color = damageColor;
+        }
+    }
+
+    public void ResetColor()
+    {
+        for (int index = 0; index < renderers.Length; index++)
+        {
+            renderers[index].material.color = originalColors[index];
+        }
     }
 }

@@ -31,6 +31,9 @@ public class GameResult : MonoBehaviour
     {
         Debug.Log("DEFEAT!");
 
+        //Disable being able to damage enemies, stop spawning new enemies and stop all existing enemies from moving
+        DisableEnemies();
+
         CanvasGroup resultCanvas = GameResultPanel.GetComponent<CanvasGroup>();
         resultCanvas.alpha = 1f;
 
@@ -48,5 +51,18 @@ public class GameResult : MonoBehaviour
 
         //Go back to main menu
         SceneManager.LoadScene("Start");
+    }
+
+    private void DisableEnemies()
+    {
+        //Get all enemy scripts in scene
+        Enemy[] enemies = Object.FindObjectsByType<Enemy>(FindObjectsSortMode.None);
+
+        //Set canNotDie var to true for all enemies so they can't die
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.canNotDie = true;
+            enemy.agent.speed = 0f;
+        }
     }
 }

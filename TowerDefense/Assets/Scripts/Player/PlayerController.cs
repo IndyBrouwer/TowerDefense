@@ -6,9 +6,12 @@ public class PlayerController : MonoBehaviour
     private float clickTimer = 0f;
     private bool clickLocked = false;
 
+    private TowerAttack currentHoveredTower;
+
     [Header("Other Scripts")]
     [SerializeField] private TowerPlacement towerPlacementScript;
     [SerializeField] private UpgradeShopController upgradeShopControllerScript;
+    [SerializeField] private GameStateManager gameStateManagerScript;
 
     private void Update()
     {
@@ -68,4 +71,49 @@ public class PlayerController : MonoBehaviour
             upgradeShopControllerScript.DisableShop();
         }
     }
+
+    //Only in build mode
+    public void OnTowerHover()
+    {
+        if (gameStateManagerScript.GetGameState() is BuildPhase)
+        {
+            //If the player hovers a tower, color the tower blue
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            TowerAttack newHoveredTower = null;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.gameObject.CompareTag("AttackTower"))
+                {
+                    newHoveredTower = hit.collider.GetComponent<TowerAttack>();
+                }
+
+                //If player was hovering something before, and now it's different (or null)
+                if (currentHoveredTower != null && currentHoveredTower != newHoveredTower)
+                {
+                    currentHoveredTower.ResetColor();
+                }
+
+                //Highlight the new tower
+                if (newHoveredTower != null)
+                {
+                    newHoveredTower.HighlightTower();
+                }
+
+                //Update reference
+                currentHoveredTower = newHoveredTower;
+            }
+        }
+    }
+
+    //public void OnTowerHold()
+    //{
+    //    //If player is holding tower, show range of tower
+    //    if (towerPlacementScript.selectedTower != null)
+    //    {
+    //        towerPlacementScript.ShowRange();
+    //    }
+    //}
 }

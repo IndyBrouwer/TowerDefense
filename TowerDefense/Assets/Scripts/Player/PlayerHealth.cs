@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public float flashDuration = 0.25f;
 
     [SerializeField] private GameResult gameResultScript;
+    [SerializeField] private EnemySpawning enemySpawningScript;
 
     private void Awake()
     {
@@ -80,6 +81,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private void Die()
     {
         Debug.Log("Player base destroyed! Game Over.");
+
+        enemySpawningScript.canSpawn = false;
 
         gameResultScript.ShowDefeat();
     }

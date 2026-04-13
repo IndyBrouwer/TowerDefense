@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Tank Enemy
   enemyPrefab: {fileID: 4820821024269678308, guid: b55c5fb2996026f4fb12c43b0a7fb3ed, type: 3}
   enemyData: {fileID: 11400000}
-  maxHealth: 5000
-  speed: 1.5
-  damage: 12
-  coins: 100
+  maxHealth: 2000
+  speed: 1
+  damage: 15
+  coins: 80
