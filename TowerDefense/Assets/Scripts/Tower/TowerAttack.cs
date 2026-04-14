@@ -263,10 +263,20 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
 
     public void HighlightTower()
     {
-        //Change the color of all renderers to damageColor
-        for (int index = 0; index < renderers.Length; index++)
+        if (IsUpgradable())
         {
-            renderers[index].material.color = hoverColor;
+            //Change the color of all renderers to damageColor
+            for (int index = 0; index < renderers.Length; index++)
+            {
+                renderers[index].material.color = hoverColor;
+            }
+        }
+        else
+        {
+            for (int index = 0; index < renderers.Length; index++)
+            {
+                renderers[index].material.color = Color.red;
+            }
         }
     }
 

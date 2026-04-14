@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
                     newHoveredTower = hit.collider.GetComponent<TowerAttack>();
                 }
 
-                //If player was hovering something before, and now it's different (or null)
+                //If player was hovering something before, and now it's different (or null), reset color
                 if (currentHoveredTower != null && currentHoveredTower != newHoveredTower)
                 {
                     currentHoveredTower.ResetColor();
