@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface ICard
 {
-    void SetCardData(TowerData cardData);
+    void SetCardData(TowerData cardData, int currentWaveIndex);
 }

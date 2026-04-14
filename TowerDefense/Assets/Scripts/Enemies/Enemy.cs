@@ -141,6 +141,7 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
 
         if (health <= 0)
         {
+            //Put earn money here to avoid getting money while they explode at base
             wallet.AddCurrency(enemyData.coins);
 
             Die();

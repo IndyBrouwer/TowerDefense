@@ -12,6 +12,7 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
     private float attackDamage;
     private float fireCooldown;
     private float fireTimer = 0f;
+    [SerializeField] private float minFireCooldown = 0.15f;
 
     [Header("Tower Effect Bools")]
     public bool canPoison;
@@ -183,8 +184,6 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
 
         enemy.TakeDamage(finalDamage);
 
-        Debug.Log($"Shot enemy for {finalDamage} damage.");
-
         if (canPoison)
         {
             enemy.ApplyPoison();
@@ -213,15 +212,13 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
     public void UpgradeSpeed(float value, UpgradeData upgradeData)
     {
         //Apply clicked upgrade effect
-        fireCooldown -= value;
+        fireCooldown = Mathf.Max(minFireCooldown, fireCooldown * value);
 
-        //Change tower accepting level to the next level so that next upgrade will be different
         if (upgradeData != null)
         {
             currentAcceptingSpeedLevel = upgradeData.upgradeLevel + 1;
         }
 
-        //Remove the just applied upgrade from the available upgrades list
         availableUpgradesCopy.Remove(upgradeData);
     }
 
@@ -235,8 +232,6 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
         {
             currentAcceptingDamageLevel = upgradeData.upgradeLevel + 1;
         }
-
-        Debug.Log($"Damage after upgrade: {attackDamage}");
 
         //Remove the just applied upgrade from the available upgrades list
         availableUpgradesCopy.Remove(upgradeData);

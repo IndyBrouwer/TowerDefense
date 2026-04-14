@@ -6,6 +6,7 @@ public class TowerPlacement : MonoBehaviour
     [HideInInspector] public TowerData selectedTower;
     private GameObject previewInstance;
     private GameObject placedTower;
+    private int increasedCost;
 
     [SerializeField] private TowerShopController towerShopControllerScript;
     [SerializeField] private Wallet walletScript;
@@ -34,8 +35,11 @@ public class TowerPlacement : MonoBehaviour
         towerShopControllerScript.towerShopButton.SetActive(true);
     }
 
-    public void SetSelectedTower(TowerData tower)
+    public void SetSelectedTower(TowerData tower, int adjustedCost)
     {
+        //Save cost changes
+        increasedCost = adjustedCost;
+
         selectedTower = tower;
 
         // Create preview object
@@ -78,7 +82,7 @@ public class TowerPlacement : MonoBehaviour
     private void PlaceTower()
     {
         //Check if the player has enough resources to buy the tower
-        if (walletScript.GetCurrencyAmount() < selectedTower.Cost)
+        if (walletScript.GetCurrencyAmount() < increasedCost)
         {
             Debug.LogWarning("Not enough currency to place this tower!");
             return;
@@ -94,7 +98,7 @@ public class TowerPlacement : MonoBehaviour
         else
         {
             //Remove cost amount from player wallet.
-            walletScript.RemoveCurrency(selectedTower.Cost);
+            walletScript.RemoveCurrency(increasedCost);
 
             //Remove tag from tile to prevent placing multiple towers on the same tile
             hit.collider.tag = "Untagged";

@@ -11,6 +11,7 @@ public class EnemySpawning : MonoBehaviour
     [Header("Wave references")]
     [SerializeField] private Wave[] enemyWave;
     private int currentWaveIndex = 0;
+    private float hpMultiplier;
 
     [Header("UI")]
     [SerializeField] private TextMeshProUGUI waveCounterText;
@@ -28,7 +29,7 @@ public class EnemySpawning : MonoBehaviour
         {
             StartCoroutine(SpawnWave(enemyWave[currentWaveIndex]));
 
-            cardMakerScript.SetupCards(enemyWave[currentWaveIndex]);
+            cardMakerScript.SetupCards(enemyWave[currentWaveIndex], currentWaveIndex);
 
             currentWaveIndex++;
         }
@@ -52,8 +53,19 @@ public class EnemySpawning : MonoBehaviour
         //Inform the enemy manager about the total enemies in this wave
         enemyManagerScript.SetEnemies(totalEnemies);
 
-        //Calculate HP multiplier based on the current wave index
-        float hpMultiplier = Mathf.Pow(1.1f, currentWaveIndex);
+        //Increase hp multiplier based on current wave index
+        if (currentWaveIndex <= 3)
+        {
+            //Wave 4!
+
+            hpMultiplier = Mathf.Pow(1.25f, currentWaveIndex);
+        }
+        else if (currentWaveIndex <= 4)
+        {
+            //Wave 5 of hoger!
+
+            hpMultiplier = Mathf.Pow(1.5f, currentWaveIndex);
+        }
 
         for (int enemyTypeIndex = 0; enemyTypeIndex < wave.enemyTypes.Length; enemyTypeIndex++)
         {
@@ -65,7 +77,7 @@ public class EnemySpawning : MonoBehaviour
                 if (canSpawn == false)
                 {
                     //Stop spawning if canSpawn is set to false
-                    yield break; 
+                    yield break;
                 }
 
                 GameObject newEnemy = Instantiate(enemyType.enemyPrefab, spawnPoint.position, Quaternion.identity);

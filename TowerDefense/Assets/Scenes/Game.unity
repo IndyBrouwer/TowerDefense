@@ -410,18 +410,20 @@ MonoBehaviour:
     shopCards:
     - {fileID: 11400000, guid: fbca58ee1a9c7e44e80531007634a394, type: 2}
     - {fileID: 11400000, guid: 9d9576b56a52f6e43a846bf5f353273b, type: 2}
-    - {fileID: 11400000, guid: e74a952c59030a548b63b51d93574797, type: 2}
+    - {fileID: 11400000, guid: 14ac501f53e68c843870c0143b65dd37, type: 2}
   - enemyTypes:
+    - {fileID: 11400000, guid: 61bd033a0d80c634398f9bbb0f6e9219, type: 2}
     - {fileID: 11400000, guid: 344a7a2371a95f347aab4117cb14dbdc, type: 2}
-    enemyCounts: 04000000
+    enemyCounts: 0200000001000000
     spawnInterval: 2
     shopCards:
     - {fileID: 11400000, guid: e74a952c59030a548b63b51d93574797, type: 2}
-    - {fileID: 11400000, guid: 488aba1f4b5e2514db5f4d25e2832700, type: 2}
+    - {fileID: 11400000, guid: 9d9576b56a52f6e43a846bf5f353273b, type: 2}
     - {fileID: 11400000, guid: fbca58ee1a9c7e44e80531007634a394, type: 2}
   - enemyTypes:
     - {fileID: 11400000, guid: 344a7a2371a95f347aab4117cb14dbdc, type: 2}
-    enemyCounts: 05000000
+    - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
+    enemyCounts: 0500000002000000
     spawnInterval: 2
     shopCards:
     - {fileID: 11400000, guid: e74a952c59030a548b63b51d93574797, type: 2}
@@ -429,7 +431,9 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 488aba1f4b5e2514db5f4d25e2832700, type: 2}
   - enemyTypes:
     - {fileID: 11400000, guid: 344a7a2371a95f347aab4117cb14dbdc, type: 2}
-    enemyCounts: 07000000
+    - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
+    - {fileID: 11400000, guid: 61bd033a0d80c634398f9bbb0f6e9219, type: 2}
+    enemyCounts: 070000000600000002000000
     spawnInterval: 2
     shopCards:
     - {fileID: 11400000, guid: 7c8069b9504b587479c35726810351b5, type: 2}
@@ -437,38 +441,44 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 14ac501f53e68c843870c0143b65dd37, type: 2}
   - enemyTypes:
     - {fileID: 11400000, guid: 344a7a2371a95f347aab4117cb14dbdc, type: 2}
+    - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
     - {fileID: 11400000, guid: 61bd033a0d80c634398f9bbb0f6e9219, type: 2}
-    enemyCounts: 0600000002000000
+    enemyCounts: 030000000400000002000000
     spawnInterval: 2
     shopCards:
     - {fileID: 11400000, guid: e74a952c59030a548b63b51d93574797, type: 2}
-    - {fileID: 11400000, guid: e74a952c59030a548b63b51d93574797, type: 2}
+    - {fileID: 11400000, guid: 488aba1f4b5e2514db5f4d25e2832700, type: 2}
     - {fileID: 11400000, guid: fbca58ee1a9c7e44e80531007634a394, type: 2}
   - enemyTypes:
-    - {fileID: 11400000, guid: 344a7a2371a95f347aab4117cb14dbdc, type: 2}
     - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
     - {fileID: 11400000, guid: 61bd033a0d80c634398f9bbb0f6e9219, type: 2}
-    enemyCounts: 050000000500000005000000
+    - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
+    - {fileID: 11400000, guid: 61bd033a0d80c634398f9bbb0f6e9219, type: 2}
+    - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
+    enemyCounts: 0400000006000000050000000500000005000000
     spawnInterval: 2
     shopCards:
     - {fileID: 11400000, guid: 488aba1f4b5e2514db5f4d25e2832700, type: 2}
     - {fileID: 11400000, guid: 9d9576b56a52f6e43a846bf5f353273b, type: 2}
     - {fileID: 11400000, guid: 7c8069b9504b587479c35726810351b5, type: 2}
   - enemyTypes:
+    - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
     - {fileID: 11400000, guid: 344a7a2371a95f347aab4117cb14dbdc, type: 2}
     - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
     - {fileID: 11400000, guid: 61bd033a0d80c634398f9bbb0f6e9219, type: 2}
-    enemyCounts: 0a000000050000000a000000
+    - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
+    enemyCounts: 0a000000060000000e0000000500000005000000
     spawnInterval: 2
     shopCards:
     - {fileID: 11400000, guid: 488aba1f4b5e2514db5f4d25e2832700, type: 2}
     - {fileID: 11400000, guid: 7c8069b9504b587479c35726810351b5, type: 2}
-    - {fileID: 11400000, guid: 14ac501f53e68c843870c0143b65dd37, type: 2}
+    - {fileID: 11400000, guid: fbca58ee1a9c7e44e80531007634a394, type: 2}
   - enemyTypes:
     - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
     - {fileID: 11400000, guid: 61bd033a0d80c634398f9bbb0f6e9219, type: 2}
     - {fileID: 11400000, guid: 344a7a2371a95f347aab4117cb14dbdc, type: 2}
-    enemyCounts: 140000000a0000000a000000
+    - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
+    enemyCounts: 140000000a0000000a0000000a000000
     spawnInterval: 2
     shopCards:
     - {fileID: 11400000, guid: e74a952c59030a548b63b51d93574797, type: 2}
@@ -477,21 +487,23 @@ MonoBehaviour:
   - enemyTypes:
     - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
     - {fileID: 11400000, guid: 61bd033a0d80c634398f9bbb0f6e9219, type: 2}
+    - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
     - {fileID: 11400000, guid: 344a7a2371a95f347aab4117cb14dbdc, type: 2}
-    enemyCounts: 140000000a0000000a000000
+    enemyCounts: 1e000000140000000a0000000a000000
     spawnInterval: 2
     shopCards:
-    - {fileID: 11400000, guid: e74a952c59030a548b63b51d93574797, type: 2}
+    - {fileID: 11400000, guid: 9d9576b56a52f6e43a846bf5f353273b, type: 2}
     - {fileID: 11400000, guid: 7c8069b9504b587479c35726810351b5, type: 2}
     - {fileID: 11400000, guid: 488aba1f4b5e2514db5f4d25e2832700, type: 2}
   - enemyTypes:
     - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
     - {fileID: 11400000, guid: 61bd033a0d80c634398f9bbb0f6e9219, type: 2}
     - {fileID: 11400000, guid: 344a7a2371a95f347aab4117cb14dbdc, type: 2}
-    enemyCounts: 140000000a0000000a000000
+    - {fileID: 11400000, guid: 68ab5e5ab6e07d841a656af9ae93116f, type: 2}
+    enemyCounts: 32000000140000000a0000001e000000
     spawnInterval: 2
     shopCards:
-    - {fileID: 11400000, guid: e74a952c59030a548b63b51d93574797, type: 2}
+    - {fileID: 11400000, guid: fbca58ee1a9c7e44e80531007634a394, type: 2}
     - {fileID: 11400000, guid: 7c8069b9504b587479c35726810351b5, type: 2}
     - {fileID: 11400000, guid: 488aba1f4b5e2514db5f4d25e2832700, type: 2}
   waveCounterText: {fileID: 733701082}
@@ -30685,6 +30697,10 @@ PrefabInstance:
       propertyPath: towerTurret
       value: 
       objectReference: {fileID: 488537466}
+    - target: {fileID: 5048014227286085140, guid: 401550001fada6641b2e0f3748cb34dd, type: 3}
+      propertyPath: minFireCooldown
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 5048014227286085140, guid: 401550001fada6641b2e0f3748cb34dd, type: 3}
       propertyPath: overrideDamageLevel
       value: 2

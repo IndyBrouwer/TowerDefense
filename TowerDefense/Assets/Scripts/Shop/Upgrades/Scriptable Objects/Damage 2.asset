@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Damage 2
   upgradeType: 0
-  upgradeLevel: 3
+  upgradeLevel: 2
   isHighestLevel: 1
-  upgradeValue: 1.5
+  upgradeValue: 1.2
   upgradeCost: 80

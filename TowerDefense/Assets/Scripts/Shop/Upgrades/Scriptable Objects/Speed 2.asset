@@ -16,5 +16,5 @@ MonoBehaviour:
   upgradeType: 1
   upgradeLevel: 2
   isHighestLevel: 1
-  upgradeValue: 1
+  upgradeValue: 0.8
   upgradeCost: 80

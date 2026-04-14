@@ -11,17 +11,21 @@ public class ShopCard : MonoBehaviour, ICard, IInteractable
     [SerializeField] private TextMeshProUGUI towerDescription;
 
     private TowerData currentTower;
+    private int adjustedCost;
 
     [Header("Other Scripts")]
     [SerializeField] private TowerShopController towershopControllerScript;
     [SerializeField] private TowerPlacement towerPlacementScript;
 
-    public void SetCardData(TowerData data)
+    public void SetCardData(TowerData data, int currentWaveIndex)
     {
         currentTower = data;
-
         towerName.text = data.TowerName;
-        towerCost.text = data.Cost.ToString();
+
+        float costMultiplier = Mathf.Pow(1.05f, currentWaveIndex);
+        adjustedCost = Mathf.CeilToInt(data.Cost * costMultiplier);
+
+        towerCost.text = adjustedCost.ToString();
         towerImage.sprite = data.TowerSprite;
         towerDescription.text = data.TowerDescription;
     }
@@ -31,6 +35,6 @@ public class ShopCard : MonoBehaviour, ICard, IInteractable
         //Hide the shop menu
         towershopControllerScript.DisableShop();
 
-        towerPlacementScript.SetSelectedTower(currentTower);
+        towerPlacementScript.SetSelectedTower(currentTower, adjustedCost);
     }
 }
