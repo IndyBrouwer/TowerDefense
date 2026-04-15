@@ -39,7 +39,10 @@ public class TowerAttack : MonoBehaviour, IDamageTower,IUpgradable
     {
         renderers = GetComponentsInChildren<Renderer>();
 
+        //Check if renderer has colors
+
         originalColors = new Color[renderers.Length];
+
         for (int index = 0; index < renderers.Length; index++)
         {
             originalColors[index] = renderers[index].material.color;

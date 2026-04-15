@@ -13788,6 +13788,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedTower: {fileID: 0}
+  hologramMat: {fileID: 2100000, guid: e79c55f0debe4644093513ad15bb79cb, type: 2}
+  rangeMat: {fileID: 2100000, guid: ecf704bb74a20cb42948cc2a6c39926f, type: 2}
   towerShopControllerScript: {fileID: 1630916143}
   walletScript: {fileID: 369656455}
 --- !u!1001 &574791239
@@ -15313,7 +15315,19 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1643767286}
+        m_TargetAssemblyTypeName: AudioSettings, Assembly-CSharp
+        m_MethodName: ApplyMasterVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &653212414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31770,6 +31784,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1397600806}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnEscapeClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 77a472b2-73f5-4bae-be33-23c6daa1a817
+    m_ActionName: 'UI/Pause[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: UI
@@ -31806,6 +31836,7 @@ MonoBehaviour:
   towerPlacementScript: {fileID: 574374592}
   upgradeShopControllerScript: {fileID: 1630916146}
   gameStateManagerScript: {fileID: 1818770442}
+  pauseMenuScript: {fileID: 574374590}
 --- !u!1001 &1403413877
 PrefabInstance:
   m_ObjectHideFlags: 0

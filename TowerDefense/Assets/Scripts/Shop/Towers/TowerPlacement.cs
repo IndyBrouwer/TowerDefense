@@ -8,6 +8,13 @@ public class TowerPlacement : MonoBehaviour
     private GameObject placedTower;
     private int increasedCost;
 
+    [Header("Hologram Effect")]
+    public Material hologramMat;
+    [SerializeField] private Material rangeMat;
+    private Renderer[] renderers;
+    private Material[] originalMaterials;
+
+    [Header("Other Scripts")]
     [SerializeField] private TowerShopController towerShopControllerScript;
     [SerializeField] private Wallet walletScript;
 
@@ -52,6 +59,25 @@ public class TowerPlacement : MonoBehaviour
 
         //Disable collider for preview to avoid triggering placement issues
         previewInstance.GetComponent<Collider>().enabled = false;
+
+        //Disable towerattack script for the preview to avoid errors about colors
+        TowerAttack towerAttackScript = previewInstance.GetComponent<TowerAttack>();
+        if (towerAttackScript != null)
+        {
+            towerAttackScript.enabled = false;
+        }
+
+        //Change material to hologram material
+        ApplyHologramEffect();
+
+        CreateRangeSphere();
+
+        //Put preview on another layer to avoid raycast interacting with it
+        previewInstance.layer = LayerMask.NameToLayer("Preview");
+        foreach (Transform child in previewInstance.transform)
+        {
+            child.gameObject.layer = LayerMask.NameToLayer("Preview");
+        }       
     }
 
     private void Update()
@@ -66,16 +92,68 @@ public class TowerPlacement : MonoBehaviour
 
     private void MovePreviewToMouse()
     {
-        if (previewInstance == null) return;
+        if (previewInstance == null)
+        {
+            return;
+        }
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        //Every layer EXCEPT the Preview layer
+        int layerMask = ~LayerMask.GetMask("Preview");
+
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask))
         {
             if (hit.collider.CompareTag("PlacingTile"))
             {
                 previewInstance.transform.position = hit.collider.transform.position;
             }
+        }
+    }
+
+    private void CreateRangeSphere()
+    {
+        //Create sphere to display range
+        GameObject rangeIndicator = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+
+        //Destory the collider that it comes with
+        Destroy(rangeIndicator.GetComponent<Collider>());
+
+        //Set sphere as child object from the preview tower
+        rangeIndicator.transform.SetParent(previewInstance.transform);
+
+        //Set position and rotatopn of the sphere
+        rangeIndicator.transform.localPosition = Vector3.zero;
+        rangeIndicator.transform.localRotation = Quaternion.identity;
+
+        //Set size to range of tower
+        float range = selectedTower.Range;
+        rangeIndicator.transform.localScale = new Vector3(range * 2f, range * 2f, range * 2f);
+
+        ApplyRangeProjection(rangeIndicator);
+    }
+
+    private void ApplyRangeProjection(GameObject rangeIndicator)
+    {
+        Renderer renderer = rangeIndicator.GetComponent<Renderer>();
+
+        renderer.material = rangeMat;
+    }
+
+    private void ApplyHologramEffect()
+    {
+        renderers = previewInstance.GetComponentsInChildren<Renderer>();
+
+        originalMaterials = new Material[renderers.Length];
+        for (int index = 0; index < renderers.Length; index++)
+        {
+            originalMaterials[index] = renderers[index].material;
+        }
+
+        //Change all materials to hologram material
+        for (int index = 0; index < renderers.Length; index++)
+        {
+            renderers[index].material = hologramMat;
         }
     }
 
@@ -90,7 +168,11 @@ public class TowerPlacement : MonoBehaviour
 
         //Check if its an empty tile
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (!Physics.Raycast(ray, out RaycastHit hit) || !hit.collider.CompareTag("PlacingTile"))
+
+        //Every layer EXCEPT the Preview layer
+        int layerMask = ~LayerMask.GetMask("Preview");
+
+        if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask) || !hit.collider.CompareTag("PlacingTile"))
         {
             Debug.LogWarning("You can only place towers on empty tiles!");
             return;

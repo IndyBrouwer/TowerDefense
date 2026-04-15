@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TowerPlacement towerPlacementScript;
     [SerializeField] private UpgradeShopController upgradeShopControllerScript;
     [SerializeField] private GameStateManager gameStateManagerScript;
+    [SerializeField] private PauseMenu pauseMenuScript;
 
     private void Update()
     {
@@ -24,6 +25,12 @@ public class PlayerController : MonoBehaviour
                 clickLocked = false;
             }
         }
+    }
+
+    public void OnEscapeClick()
+    {
+        //Call function that brings up pause menu
+        pauseMenuScript.TogglePause();
     }
 
     //Only trigger when in build phase
@@ -72,11 +79,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //Only in build mode
+    //Only in build mode, exclude tower if it is in the process of being placed
     public void OnTowerHover()
     {
         if (gameStateManagerScript.GetGameState() is BuildPhase)
         {
+            Camera cam = Camera.main;
+            if (cam == null)
+            {
+                return;
+            }
+
             //If the player hovers a tower, color the tower blue
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -87,6 +100,16 @@ public class PlayerController : MonoBehaviour
             {
                 if (hit.collider.gameObject.CompareTag("AttackTower"))
                 {
+                    //Check if the tower hit is being placed, if yes cancel this function
+                    Renderer[] hitRenderers = hit.collider.gameObject.GetComponentsInChildren<Renderer>();
+                    foreach (Renderer renderer in hitRenderers)
+                    {
+                        if (renderer.material == towerPlacementScript.hologramMat)
+                        {
+                            return;
+                        }
+                    }
+
                     newHoveredTower = hit.collider.GetComponent<TowerAttack>();
                 }
 
