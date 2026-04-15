@@ -12,6 +12,7 @@ public class BuildingTime : MonoBehaviour
     [SerializeField] private EnemySpawning enemySpawningScript;
     [SerializeField] private GameStateManager gameStateManagerScript;
     [SerializeField] private TowerPlacement towerPlacementScript;
+    [SerializeField] private Wallet walletScript;
 
     private void Update()
     {
@@ -54,6 +55,35 @@ public class BuildingTime : MonoBehaviour
         isDecreasing = false;
 
         buildTimeLeft = buildingTime;
+
+        //Based on how much time is left, give currency if above 8 seconds left? If above 25 give most
+
+        int reward;
+
+        if (buildTimeLeft >= 25f)
+        {
+            //Heel vroeg gestopt grootste beloning
+            reward = 10;
+        }
+        else if (buildTimeLeft >= 20)
+        {
+            reward = 8;
+        }
+        else if (buildTimeLeft >= 15)
+        {
+            reward = 5;
+        }
+        else if (buildTimeLeft >= 10)
+        {
+            reward = 2;
+        }
+        else
+        {
+            //Build phase bijna klaar, geen beloning
+            reward = 0;
+        }
+
+        walletScript.AddCurrency(reward);
     }
 
     public void ResetBuildingTime()

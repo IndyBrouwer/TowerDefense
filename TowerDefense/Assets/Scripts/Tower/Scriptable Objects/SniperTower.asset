@@ -19,7 +19,7 @@ MonoBehaviour:
     range but has a very slow fire rate.
   TowerPrefab: {fileID: 5561377667579305060, guid: 715f2e2be3cf42641888eb01395615e3, type: 3}
   Power: 2000
-  Range: 10
+  Range: 9
   FireCooldown: 8
   acceptingDamageLevel: 1
   acceptingSpeedLevel: 1

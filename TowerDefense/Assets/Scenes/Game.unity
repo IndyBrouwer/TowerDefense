@@ -36170,6 +36170,7 @@ MonoBehaviour:
   enemySpawningScript: {fileID: 666379}
   gameStateManagerScript: {fileID: 1818770442}
   towerPlacementScript: {fileID: 574374592}
+  walletScript: {fileID: 369656455}
 --- !u!114 &1630916145
 MonoBehaviour:
   m_ObjectHideFlags: 0
