@@ -20,7 +20,7 @@ public class ShopCard : MonoBehaviour, ICard, IInteractable
     [SerializeField] private TowerShopController towershopControllerScript;
     [SerializeField] private TowerPlacement towerPlacementScript;
     [SerializeField] private Wallet walletScript;
-    [SerializeField] private CamShake camShakeScript;
+    [SerializeField] private UIShake uiShakeScript;
 
     public void SetCardData(TowerData data, int currentWaveIndex)
     {
@@ -40,14 +40,15 @@ public class ShopCard : MonoBehaviour, ICard, IInteractable
         //Money check
         if (walletScript.GetCurrencyAmount() < adjustedCost)
         {
-            //Shake camera
-            camShakeScript.Shake();
+            //Shake card UI
+            uiShakeScript.StartShake();
 
             //Play no funds sound
             AudioManager.Instance.sfxManager.PlaySFX(walletScript.noFundsSound);
 
             //Enable red screen effect for a second
             Background.color = cantAffordColor;
+            towerImage.color = cantAffordColor;
 
             StartCoroutine(ResetColor());
 
@@ -67,5 +68,6 @@ public class ShopCard : MonoBehaviour, ICard, IInteractable
         yield return new WaitForSeconds(0.2f);
 
         Background.color = Color.white;
+        towerImage.color = Color.white;
     }
 }

@@ -4,6 +4,7 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseButton;
     [SerializeField] private GameObject pauseMenuUI;
+    [SerializeField] private GameObject TipBoxUI;
 
     public void TogglePause()
     {
@@ -15,6 +16,9 @@ public class PauseMenu : MonoBehaviour
             //Show the pause button and hide the pause menu
             pauseButton.SetActive(true);
             pauseMenuUI.SetActive(false);
+
+            //Turn on tips UI
+            TipBoxUI.SetActive(true);
         }
         else
         {
@@ -24,6 +28,9 @@ public class PauseMenu : MonoBehaviour
             //Hide the pause button and show the pause menu
             pauseButton.SetActive(false);
             pauseMenuUI.SetActive(true);
+
+            //Turn off Tips UI
+            TipBoxUI.SetActive(false);
         }
     }
 }

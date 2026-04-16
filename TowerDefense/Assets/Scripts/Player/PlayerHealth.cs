@@ -18,6 +18,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     [SerializeField] private GameResult gameResultScript;
     [SerializeField] private EnemySpawning enemySpawningScript;
+    [SerializeField] private CamShake camShakeScript;
+
 
     private void Awake()
     {
@@ -39,6 +41,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     public void TakeDamage(float amount)
     {
+        //Shake camera
+        camShakeScript.Shake();
+
         //Decrease player health (UI healthbar)
 
         currentHealth -= amount;
