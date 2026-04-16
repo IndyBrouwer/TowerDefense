@@ -80,7 +80,7 @@ public class BuildingTime : MonoBehaviour
         else
         {
             //Build phase bijna klaar, geen beloning
-            reward = 0;
+            return;
         }
 
         walletScript.AddCurrency(reward);

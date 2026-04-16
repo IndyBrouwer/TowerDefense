@@ -90,7 +90,6 @@ public class PlayerController : MonoBehaviour
                 return;
             }
 
-            //If the player hovers a tower, color the tower blue
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
@@ -131,12 +130,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //public void OnTowerHold()
-    //{
-    //    //If player is holding tower, show range of tower
-    //    if (towerPlacementScript.selectedTower != null)
-    //    {
-    //        towerPlacementScript.ShowRange();
-    //    }
-    //}
+    public void OnGameStateChanged()
+    {
+        if (!(gameStateManagerScript.GetGameState() is BuildPhase))
+        {
+            if (currentHoveredTower != null)
+            {
+                currentHoveredTower.ResetColor();
+                currentHoveredTower = null;
+            }
+        }
+    }
 }

@@ -9,10 +9,11 @@ public class TowerPlacement : MonoBehaviour
     private int increasedCost;
 
     [Header("Hologram Effect")]
+    [HideInInspector] public Material[] originalMaterials;
     public Material hologramMat;
+    
     [SerializeField] private Material rangeMat;
     private Renderer[] renderers;
-    private Material[] originalMaterials;
 
     [Header("Other Scripts")]
     [SerializeField] private TowerShopController towerShopControllerScript;

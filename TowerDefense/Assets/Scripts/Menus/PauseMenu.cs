@@ -4,7 +4,10 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject pauseButton;
     [SerializeField] private GameObject pauseMenuUI;
+
     [SerializeField] private GameObject TipBoxUI;
+
+    [SerializeField] private GameStateManager gameStateManagerScript;
 
     public void TogglePause()
     {
@@ -17,8 +20,11 @@ public class PauseMenu : MonoBehaviour
             pauseButton.SetActive(true);
             pauseMenuUI.SetActive(false);
 
-            //Turn on tips UI
-            TipBoxUI.SetActive(true);
+            if (gameStateManagerScript.GetGameState() is BuildPhase)
+            {
+                //Turn on tips UI
+                TipBoxUI.SetActive(true);
+            }
         }
         else
         {

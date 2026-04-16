@@ -10,9 +10,9 @@ public class ShopCard : MonoBehaviour, ICard, IInteractable
     [SerializeField] private TextMeshProUGUI towerCost;
     [SerializeField] private Image towerImage;
     [SerializeField] private TextMeshProUGUI towerDescription;
-    [SerializeField] private Image Background;
+    [SerializeField] private Image background;
 
-    public Color cantAffordColor;
+    [SerializeField] private Color cantAffordColor;
     private TowerData currentTower;
     private int adjustedCost;
 
@@ -47,7 +47,7 @@ public class ShopCard : MonoBehaviour, ICard, IInteractable
             AudioManager.Instance.sfxManager.PlaySFX(walletScript.noFundsSound);
 
             //Enable red screen effect for a second
-            Background.color = cantAffordColor;
+            background.color = cantAffordColor;
             towerImage.color = cantAffordColor;
 
             StartCoroutine(ResetColor());
@@ -67,7 +67,7 @@ public class ShopCard : MonoBehaviour, ICard, IInteractable
     {
         yield return new WaitForSeconds(0.2f);
 
-        Background.color = Color.white;
+        background.color = Color.white;
         towerImage.color = Color.white;
     }
 }

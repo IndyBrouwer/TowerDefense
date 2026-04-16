@@ -50,8 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slowMultiplier: 0.5
-  thisTower: {fileID: 11400000, guid: 14ac501f53e68c843870c0143b65dd37, type: 2}
-  supportType: 2
+  thisTower: {fileID: 11400000, guid: fbca58ee1a9c7e44e80531007634a394, type: 2}
+  supportType: 0
 --- !u!114 &-5357187245274240743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bigCrystal: {fileID: 5097823759089387842}
   smallCrystals: {fileID: 2087266053334289140}
-  thisTower: {fileID: 11400000, guid: 14ac501f53e68c843870c0143b65dd37, type: 2}
+  thisTower: {fileID: 11400000, guid: fbca58ee1a9c7e44e80531007634a394, type: 2}
 --- !u!65 &876446722351704577
 BoxCollider:
   m_ObjectHideFlags: 0

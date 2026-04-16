@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TowerName: Boost Tower
   TowerType: Support
-  TowerSprite: {fileID: 21300000, guid: fafecfa2851b19948ad754fdfb5d0afc, type: 3}
+  TowerSprite: {fileID: 21300000, guid: 2cecb16f6398c6b4491c1d93351b365c, type: 3}
   TowerDescription: A supportive tower, this tower causes offensive towers in range
     to deal more damage.
-  TowerPrefab: {fileID: 1800266562124969194, guid: d2fa4295c277a7246855b87a1f2cc015, type: 3}
+  TowerPrefab: {fileID: 3079304631982756802, guid: b73241391819b9743a7c18601b129e3f, type: 3}
   Power: 0
   Range: 3
   FireCooldown: 0
@@ -25,4 +25,4 @@ MonoBehaviour:
   acceptingSpeedLevel: 0
   availableUpgrades: []
   Cost: 20
-  TowerColor: {r: 0.48742133, g: 1, b: 0.89748424, a: 0}
+  TowerColor: {r: 0, g: 1, b: 0.90776706, a: 0}

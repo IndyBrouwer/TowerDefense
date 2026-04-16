@@ -1,36 +1,47 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneFunctions : MonoBehaviour
 {
+    public Animator transitionAnimator;
+
     public void StartGame()
     {
-        SceneManager.LoadScene("Game");
+        StartCoroutine(LoadScene("Game"));
     }
 
     public void LoadSettingsMenu()
     {
-        SceneManager.LoadScene("Settings");
+        StartCoroutine(LoadScene("Settings"));
     }
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("Start");
-        if (Time.timeScale != 1)
-        {
-            Time.timeScale = 1;
-        }
+        StartCoroutine(LoadScene("Start"));
     }
 
     public void QuitGame()
     {
         #if UNITY_WEBGL
-                        // For WebGL builds, just show a message or redirect to a main menu.
-                        Debug.Log("Quit not supported in WebGL. Returning to main menu...");
-                        // Example: return to main menu instead of quitting.
-                        UnityEngine.SceneManagement.SceneManager.LoadScene("Start");
+            //Return to main menu instead of quitting.
+            StartCoroutine(LoadScene("Start"));
         #else
-                Application.Quit();
+            Application.Quit();
         #endif
+    }
+
+    private IEnumerator LoadScene(string sceneName)
+    {
+        if (Time.timeScale != 1)
+        {
+            Time.timeScale = 1;
+        }
+
+        transitionAnimator.SetTrigger("Start");
+
+        yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene(sceneName);
     }
 }

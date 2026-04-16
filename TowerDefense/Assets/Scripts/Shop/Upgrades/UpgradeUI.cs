@@ -1,5 +1,7 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeUI : MonoBehaviour
 {
@@ -22,9 +24,15 @@ public class UpgradeUI : MonoBehaviour
     private UpgradeData currentDamageUpgrade;
     private UpgradeData currentSpeedUpgrade;
 
+    [Header("Reactive UI")]
+    [SerializeField] private Color cantAffordColor;
+    [SerializeField] private Image background;
+
+
     [Header("Other Scripts")]
     [SerializeField] private Wallet walletScript;
     private TowerAttack towerAttackScript;
+    [SerializeField] private UIShake uiShakeScript;
 
     public void SetupShop(TowerAttack towerAttack)
     {
@@ -84,7 +92,16 @@ public class UpgradeUI : MonoBehaviour
         //Check if the player can afford the upgrade
         if (!walletScript.CanAfford(currentDamageUpgrade.upgradeCost))
         {
+            //Shake effect
+            uiShakeScript.StartShake();
+
             AudioManager.Instance.sfxManager.PlaySFX(walletScript.noFundsSound);
+
+            //Color change
+            background.color = cantAffordColor;
+
+            StartCoroutine(ResetColor());
+
             return;
         }
 
@@ -100,7 +117,16 @@ public class UpgradeUI : MonoBehaviour
         //Check if the player can afford the upgrade
         if (!walletScript.CanAfford(currentSpeedUpgrade.upgradeCost))
         {
+            //Shake effect
+            uiShakeScript.StartShake();
+
             AudioManager.Instance.sfxManager.PlaySFX(walletScript.noFundsSound);
+
+            //Color change
+            background.color = cantAffordColor;
+
+            StartCoroutine(ResetColor());
+
             return;
         }
 
@@ -109,5 +135,12 @@ public class UpgradeUI : MonoBehaviour
         towerAttackScript.UpgradeSpeed(SpeedUpgradeValue, currentSpeedUpgrade);
 
         SetupShop(towerAttackScript);
+    }
+
+    private IEnumerator ResetColor()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        background.color = Color.white;
     }
 }

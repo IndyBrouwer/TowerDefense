@@ -8,6 +8,8 @@ public class GameStateManager : MonoBehaviour
     [SerializeField] private BuildPhase buildPhase;
     [SerializeField] private WavePhase wavePhase;
 
+    [SerializeField] private PlayerController playerControllerScript;
+
     private void Start()
     {
         StartWavePhase();
@@ -22,6 +24,8 @@ public class GameStateManager : MonoBehaviour
 
         currentState = newState;
         currentState.Enter();
+
+        playerControllerScript.OnGameStateChanged();
     }
 
     public IGameState GetGameState()
