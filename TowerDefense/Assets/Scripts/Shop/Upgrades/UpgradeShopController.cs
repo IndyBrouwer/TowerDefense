@@ -8,10 +8,11 @@ public class UpgradeShopController : MonoBehaviour
     [SerializeField] private UpgradeUI upgradeUIScript;
     [SerializeField] private GameStateManager gameStateManagerScript;
 
-    public void OnPlayerLeftClicked(TowerAttack AttackTowerScript)
+    //If in placing phase don't do anything
+    public void OnPlayerLeftClicked(TowerAttack AttackTowerScript, TowerPlacement towerPlacementScript)
     {
         //Check if in build mode, if not return
-        if (gameStateManagerScript.GetGameState() is WavePhase)
+        if (gameStateManagerScript.GetGameState() is WavePhase || towerPlacementScript.placingTower)
         {
             return;
         }

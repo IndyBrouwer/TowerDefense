@@ -59,6 +59,9 @@ public class ShopCard : MonoBehaviour, ICard, IInteractable
         //Hide the shop menu
         towershopControllerScript.DisableShop();
 
+        //Enable tower placement mode
+        towerPlacementScript.placingTower = true;
+
         towerPlacementScript.SetSelectedTower(currentTower, adjustedCost);
     }
 

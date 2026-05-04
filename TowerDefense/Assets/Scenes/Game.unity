@@ -9276,7 +9276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currencyText: {fileID: 1961434404}
-  maxCurrencyAmount: 9999
+  maxCurrencyAmount: 99999
   earnSound: {fileID: 8300000, guid: 29ddf0946c9ac3747a7092a3c107086c, type: 3}
   spendSound: {fileID: 8300000, guid: 77fa7fe1494e9de4a85474a286a290dd, type: 3}
   noFundsSound: {fileID: 8300000, guid: e1d844caa2098b74a9ae0ac81d8cc6c3, type: 3}
@@ -13873,6 +13873,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedTower: {fileID: 0}
+  placingTower: 0
   originalMaterials: []
   hologramMat: {fileID: 2100000, guid: e79c55f0debe4644093513ad15bb79cb, type: 2}
   rangeMat: {fileID: 2100000, guid: ecf704bb74a20cb42948cc2a6c39926f, type: 2}
@@ -36618,6 +36619,7 @@ MonoBehaviour:
   towerShopMenu: {fileID: 1579626063}
   towerShopButton: {fileID: 1914707175}
   tipBox: {fileID: 1937996136}
+  upgradeShopControllerScript: {fileID: 1630916146}
 --- !u!114 &1630916144
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -16,6 +17,8 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
 
     private bool isDead = false;
     public bool canNotDie = false;
+
+    private int slowSources = 0;
 
     [Header("Damage Flash Effect")]
     private Renderer[] renderers;
@@ -84,9 +87,24 @@ public class Enemy : MonoBehaviour, IEnemy, IDamageable
         StartCoroutine(InvincibilityCoroutine());
     }
 
-    public void SetSpeedMultiplier(float multiplier)
+    public void EnterSlow(float multiplier)
     {
-        agent.speed = speed * multiplier;
+        slowSources++;
+
+        if (slowSources == 1)
+        {
+            agent.speed = speed * multiplier;
+        }
+    }
+
+    public void ExitSlow()
+    {
+        slowSources = Mathf.Max(0, slowSources - 1);
+
+        if (slowSources == 0)
+        {
+            agent.speed = speed;
+        }
     }
 
     public void ApplyPoison()

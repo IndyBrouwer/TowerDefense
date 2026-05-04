@@ -101,7 +101,7 @@ public class TowerSupport : MonoBehaviour
         {
             if (!affectedEnemies.Contains(enemy))
             {
-                enemy.SetSpeedMultiplier(slowMultiplier);
+                enemy.EnterSlow(slowMultiplier);
                 affectedEnemies.Add(enemy);
             }
         }
@@ -120,7 +120,7 @@ public class TowerSupport : MonoBehaviour
             //Reset speed when leaving range
             if (!current.Contains(enemy))
             {
-                enemy.SetSpeedMultiplier(1f);
+                enemy.ExitSlow();
                 toRemove.Add(enemy);
             }
         }

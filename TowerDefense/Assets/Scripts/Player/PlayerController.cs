@@ -47,12 +47,12 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit))
         {
-            if (hit.collider.gameObject.CompareTag("AttackTower"))
+            if (hit.collider.gameObject.CompareTag("AttackTower") && !towerPlacementScript.placingTower)
             {
                 TowerAttack AttackTowerScript = hit.collider.gameObject.GetComponent<TowerAttack>();
 
                 //Open upgrade shop menu
-                upgradeShopControllerScript.OnPlayerLeftClicked(AttackTowerScript);
+                upgradeShopControllerScript.OnPlayerLeftClicked(AttackTowerScript, towerPlacementScript);
             }
             else if (hit.collider.gameObject.CompareTag("PlacingTile"))
             {

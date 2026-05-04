@@ -8,6 +8,8 @@ public class TowerPlacement : MonoBehaviour
     private GameObject placedTower;
     private int increasedCost;
 
+    public bool placingTower = false;
+
     [Header("Hologram Effect")]
     [HideInInspector] public Material[] originalMaterials;
     public Material hologramMat;
@@ -41,6 +43,8 @@ public class TowerPlacement : MonoBehaviour
 
         //Enable shop icon again
         towerShopControllerScript.towerShopButton.SetActive(true);
+
+        placingTower = false;
     }
 
     public void SetSelectedTower(TowerData tower, int adjustedCost)
@@ -176,6 +180,7 @@ public class TowerPlacement : MonoBehaviour
         if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layerMask) || !hit.collider.CompareTag("PlacingTile"))
         {
             Debug.LogWarning("You can only place towers on empty tiles!");
+            //Play error sound effect
             return;
         }
         else
@@ -195,6 +200,8 @@ public class TowerPlacement : MonoBehaviour
 
             //Enable shop icon again
             towerShopControllerScript.towerShopButton.SetActive(true);
+
+            placingTower = false;
         }
     }
 }
