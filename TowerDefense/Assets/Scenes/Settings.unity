@@ -24338,7 +24338,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: 11.657227}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -29554,8 +29554,8 @@ MonoBehaviour:
   m_text: "TIP: Click attacking towers to upgrade them. \nHover color blue = upgradable\nHover
     color red = no upgrades available."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4c18963ceff2ee940a6276f11f377e61, type: 2}
-  m_sharedMaterial: {fileID: -1842668879071668845, guid: 4c18963ceff2ee940a6276f11f377e61, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6232e152c590c4d47bc5d5a93d6bfe4c, type: 2}
+  m_sharedMaterial: {fileID: 2087072242388753776, guid: 6232e152c590c4d47bc5d5a93d6bfe4c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -29585,7 +29585,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
@@ -30822,8 +30822,8 @@ MonoBehaviour:
     money to buy offensive and support towers. Towers can also be upgraded with your
     coins, increasing attack power, speed or range.'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4c18963ceff2ee940a6276f11f377e61, type: 2}
-  m_sharedMaterial: {fileID: -1842668879071668845, guid: 4c18963ceff2ee940a6276f11f377e61, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 6232e152c590c4d47bc5d5a93d6bfe4c, type: 2}
+  m_sharedMaterial: {fileID: 2087072242388753776, guid: 6232e152c590c4d47bc5d5a93d6bfe4c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
